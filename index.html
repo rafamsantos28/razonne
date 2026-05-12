@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamly - O teu cinema em casa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #4E67B1;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4E67B1 0%, #3d4f8a 100%);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #BC872E;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #BC872E;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background-color: #3d4f8a;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #BC872E;
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #4E67B1 0%, #3d4f8a 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #BC872E;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #BC872E;
+            color: #4E67B1;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(188, 135, 46, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #d49a3a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(188, 135, 46, 0.4);
+        }
+
+        .features {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #BC872E;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #BC872E;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #BC872E;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .about {
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #3d4f8a 0%, #4E67B1 100%);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            color: #BC872E;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about p {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: justify;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .specs {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .specs h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #BC872E;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-item {
+            background-color: rgba(188, 135, 46, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #BC872E;
+            text-align: center;
+        }
+
+        .spec-item h3 {
+            color: #BC872E;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .spec-item p {
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: #2d3a66;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid #BC872E;
+        }
+
+        footer p {
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        footer .social-links {
+            margin-top: 20px;
+        }
+
+        footer .social-links a {
+            color: #BC872E;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .features h2,
+            .specs h2,
+            .about h2 {
+                font-size: 28px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">🎬 STREAMLY</div>
+        <div class="tagline">O teu cinema em casa</div>
+    </header>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#features">Funcionalidades</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#especificacoes">Especificações</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <h1>O teu cinema em casa</h1>
+        <p>Descubra a melhor experiência de streaming para a tua Android TV. Filmes, séries e conteúdo exclusivo ao alcance de um clique.</p>
+        <a href="#" class="cta-button">Descarregar Agora</a>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Por que escolher Streamly?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="emoji">🎯</div>
+                <h3>Interface Intuitiva</h3>
+                <p>Navegação simples e direta, otimizada para controlo remoto. Encontra o que procuras em segundos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">🎭</div>
+                <h3>Catálogo Extenso</h3>
+                <p>Milhares de filmes e séries em diferentes géneros e idiomas para toda a família.</p>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">⚡</div>
+                <h3>Streaming Rápido</h3>
+                <p>Reprodução suave e sem buffers graças à nossa tecnologia de streaming avançada.</p>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">🔒</div>
+                <h3>Segurança Total</h3>
+                <p>A tua privacidade é importante. Dados encriptados e proteção máxima garantida.</p>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">👥</div>
+                <h3>Perfis Personalizados</h3>
+                <p>Cria múltiplos perfis para diferentes membros da família com recomendações personalizadas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="emoji">📱</div>
+                <h3>Sincronização Perfeita</h3>
+                <p>Começa no teu telemóvel e continua na TV, onde deixaste.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <h2>Sobre a Streamly</h2>
+        <p>
+            Streamly é a aplicação revolucionária de streaming pensada especialmente para Android TV. 
+            Transformamos a forma como assistes a conteúdo de qualidade na comodidade do teu lar. 
+            Com uma interface desenhada para a grande tela, compatibilidade total com o teu controlo remoto 
+            e um catálogo que cresce diariamente, Streamly é muito mais do que uma aplicação—é o teu cinema em casa.
+        </p>
+        <p>
+            A nossa missão é trazer entretenimento de qualidade e sem limites a todas as casas. 
+            Comprometemo-nos com a melhor experiência de utilizador, segurança de dados e inovação contínua.
+        </p>
+    </section>
+
+    <section id="especificacoes" class="specs">
+        <h2>Especificações Técnicas</h2>
+        <div class="specs-list">
+            <div class="spec-item">
+                <h3>Sistema</h3>
+                <p>Android TV 5.0+</p>
+            </div>
+            <div class="spec-item">
+                <h3>Resolução</h3>
+                <p>Até 4K Ultra HD</p>
+            </div>
+            <div class="spec-item">
+                <h3>Áudio</h3>
+                <p>Dolby Atmos</p>
+            </div>
+            <div class="spec-item">
+                <h3>Tamanho</h3>
+                <p>~80 MB</p>
+            </div>
+            <div class="spec-item">
+                <h3>Idiomas</h3>
+                <p>Português, Inglês, Espanhol</p>
+            </div>
+            <div class="spec-item">
+                <h3>Versão</h3>
+                <p>2.1.0</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <p>&copy; 2026 Streamly. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para ti</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+</body>
+</html>
