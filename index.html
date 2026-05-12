@@ -537,7 +537,7 @@
             </div>
 
             <div class="form-group">
-                <label for="nome">Nome <span class="required">*</span></label>
+                <label for="nome">Nome<span class="required">*</span></label>
                 <input type="text" id="nome" name="nome" required placeholder="Jorge">
             </div>
 
@@ -547,17 +547,17 @@
             </div>
 
             <div class="form-group">
-                <label for="email">Email <span class="required">*</span></label>
+                <label for="email">Email<span class="required">*</span></label>
                 <input type="email" id="email" name="email" required placeholder="utilizador@site.com">
             </div>
 
             <div class="form-group">
-                <label for="mensagem">Mensagem <span class="required">*</span></label>
+                <label for="mensagem">Mensagem<span class="required">*</span></label>
                 <textarea id="mensagem" name="mensagem" required placeholder="Escreve a tua mensagem..." maxlength="1000"></textarea>
                 <div class="char-count"><span id="charCount">0</span>/1000</div>
             </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensagem</button>
+            <button type="submit" class="submit-btn" id="submitBtn">Enviar</button>
         </form>
     </section>
 
@@ -606,7 +606,7 @@
                     errorMessage.classList.remove('show');
                     form.reset();
                     charCount.textContent = '0';
-                    submitBtn.textContent = 'Enviar Mensagem';
+                    submitBtn.textContent = 'Enviar';
                     submitBtn.disabled = false;
 
                     // Esconder a mensagem após 5 segundos
@@ -620,7 +620,7 @@
                 // Erro
                 errorMessage.classList.add('show');
                 successMessage.classList.remove('show');
-                submitBtn.textContent = 'Enviar Mensagem';
+                submitBtn.textContent = 'Enviar';
                 submitBtn.disabled = false;
 
                 // Esconder a mensagem após 5 segundos
