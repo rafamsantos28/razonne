@@ -128,22 +128,6 @@
             display: block;
         }
 
-        .success-message {
-            display: none;
-            background-color: rgba(76, 175, 80, 0.2);
-            border: 2px solid #4CAF50;
-            color: #FFFFFF;
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
         .toggle-link {
             text-align: center;
             margin-top: 20px;
@@ -185,10 +169,9 @@
             <div class="logo-text">STREAMLY+</div>
         </div>
 
-        <h1>Bem-vindo</h1>
+        <h1>Faz Login</h1>
 
         <div class="error-message" id="errorMessage"></div>
-        <div class="success-message" id="successMessage"></div>
 
         <form id="loginForm">
             <div class="form-group">
@@ -201,11 +184,11 @@
                 <input type="password" id="password" name="password" required placeholder="••••••••">
             </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">Entrar</button>
+            <button type="submit" class="submit-btn" id="submitBtn">Fazer Login</button>
         </form>
 
         <div class="toggle-link">
-            Não tens conta? <a onclick="toggleForm()">Cria uma aqui</a>
+            Não tens conta? <a onclick="toggleForm()">Regista-te aqui</a>
         </div>
     </div>
 
@@ -221,7 +204,6 @@
         const loginForm = document.getElementById('loginForm');
         const submitBtn = document.getElementById('submitBtn');
         const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
 
@@ -237,14 +219,12 @@
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'A entrar...';
+            submitBtn.textContent = 'A fazer login...';
 
             try {
-                await streamlyAuth.login(email, password);
-                showSuccess('Login realizado com sucesso!');
-                setTimeout(() => {
-                    window.location.href = '/inicio.html';
-                }, 1500);
+                const user = await streamlyAuth.login(email, password);
+                streamlyDatabase.setUserId(user.uid);
+                window.location.href = '/inicio.html';
             } catch (error) {
                 let errorMsg = 'Erro ao fazer login';
                 if (error.code === 'auth/user-not-found') {
@@ -256,7 +236,7 @@
                 }
                 showError(errorMsg);
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Entrar';
+                submitBtn.textContent = 'Fazer Login';
             }
         });
 
@@ -266,11 +246,6 @@
             setTimeout(() => {
                 errorMessage.classList.remove('show');
             }, 5000);
-        }
-
-        function showSuccess(msg) {
-            successMessage.textContent = msg;
-            successMessage.classList.add('show');
         }
 
         function toggleForm() {

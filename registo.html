@@ -270,7 +270,8 @@
             submitBtn.textContent = 'A criar conta...';
 
             try {
-                await streamlyAuth.register(email, password);
+                const user = await streamlyAuth.register(email, password);
+                streamlyDatabase.setUserId(user.uid);
                 showSuccess('Conta criada com sucesso! A redireccionar...');
                 setTimeout(() => {
                     window.location.href = '/inicio.html';

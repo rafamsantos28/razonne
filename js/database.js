@@ -1,130 +1,94 @@
 // Firebase Database Module - Watch Progress Synchronization
 class StreamlyDatabase {
     constructor() {
-        this.db = null;
-        this.auth = null;
-        this.initDatabase();
+        this.database = null;
+        this.userId = null;
     }
 
-    initDatabase() {
-        this.db = firebase.database();
-        this.auth = firebase.auth();
+    init() {
+        this.database = firebase.database();
     }
 
-    // Guardar progresso do vídeo
+    setUserId(userId) {
+        this.userId = userId;
+    }
+
     async saveWatchProgress(movieId, currentTime, duration) {
-        try {
-            const userId = this.auth.currentUser.uid;
-            const timestamp = new Date().getTime();
+        if (!this.userId) return;
 
-            await this.db.ref(`users/${userId}/watching/${movieId}`).set({
+        try {
+            const ref = this.database.ref(`users/${this.userId}/watching/${movieId}`);
+            await ref.set({
                 currentTime: currentTime,
                 duration: duration,
-                timestamp: timestamp
+                timestamp: firebase.database.ServerValue.TIMESTAMP
             });
-
-            console.log(`Progresso guardado: ${movieId} - ${currentTime}s/${duration}s`);
         } catch (error) {
-            console.error('Erro ao guardar progresso:', error.message);
-            throw error;
+            console.error('Erro ao guardar progresso:', error);
         }
     }
 
-    // Obter progresso do vídeo
     async getWatchProgress(movieId) {
+        if (!this.userId) return null;
+
         try {
-            const userId = this.auth.currentUser.uid;
-            const snapshot = await this.db.ref(`users/${userId}/watching/${movieId}`).once('value');
+            const ref = this.database.ref(`users/${this.userId}/watching/${movieId}`);
+            const snapshot = await ref.once('value');
             return snapshot.val();
         } catch (error) {
-            console.error('Erro ao obter progresso:', error.message);
+            console.error('Erro ao obter progresso:', error);
             return null;
         }
     }
 
-    // Obter todos os filmes em progresso (para "Continuar a Ver")
-    async getContinueWatching() {
+    async getAllWatchingMovies() {
+        if (!this.userId) return [];
+
         try {
-            const userId = this.auth.currentUser.uid;
-            const snapshot = await this.db.ref(`users/${userId}/watching`).once('value');
-            const data = snapshot.val();
+            const ref = this.database.ref(`users/${this.userId}/watching`);
+            const snapshot = await ref.once('value');
+            const watching = snapshot.val();
+            
+            if (!watching) return [];
 
-            if (!data) return [];
-
-            // Converter para array e ordenar por timestamp (mais recente primeiro)
-            return Object.keys(data)
+            // Converter para array e ordenar por timestamp descendente
+            return Object.keys(watching)
                 .map(movieId => ({
                     movieId: movieId,
-                    ...data[movieId]
+                    ...watching[movieId]
                 }))
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .slice(0, 10); // Limitar a 10 filmes
+                .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
         } catch (error) {
-            console.error('Erro ao obter "Continuar a Ver":', error.message);
+            console.error('Erro ao obter filmes em progresso:', error);
             return [];
         }
     }
 
-    // Obter tempo atual de um filme
-    async getCurrentTime(movieId) {
+    async removeFromWatching(movieId) {
+        if (!this.userId) return;
+
         try {
-            const progress = await this.getWatchProgress(movieId);
-            return progress ? progress.currentTime : 0;
+            const ref = this.database.ref(`users/${this.userId}/watching/${movieId}`);
+            await ref.remove();
         } catch (error) {
-            console.error('Erro ao obter tempo atual:', error.message);
-            return 0;
+            console.error('Erro ao remover do histórico:', error);
         }
     }
 
-    // Verificar se filme foi visto completamente
-    async isMovieWatched(movieId) {
-        try {
-            const progress = await this.getWatchProgress(movieId);
-            if (!progress) return false;
+    // Real-time listener para mudanças no progresso
+    onWatchProgressChanged(movieId, callback) {
+        if (!this.userId) return;
 
-            // Considerar visto se passou 90% do filme
-            const percentage = (progress.currentTime / progress.duration) * 100;
-            return percentage >= 90;
-        } catch (error) {
-            console.error('Erro ao verificar se filme foi visto:', error.message);
-            return false;
-        }
-    }
+        const ref = this.database.ref(`users/${this.userId}/watching/${movieId}`);
+        ref.on('value', (snapshot) => {
+            callback(snapshot.val());
+        });
 
-    // Eliminar progresso de um filme
-    async deleteWatchProgress(movieId) {
-        try {
-            const userId = this.auth.currentUser.uid;
-            await this.db.ref(`users/${userId}/watching/${movieId}`).remove();
-            console.log(`Progresso eliminado: ${movieId}`);
-        } catch (error) {
-            console.error('Erro ao eliminar progresso:', error.message);
-            throw error;
-        }
-    }
-
-    // Listen para mudanças em tempo real
-    onWatchProgressChange(movieId, callback) {
-        try {
-            const userId = this.auth.currentUser.uid;
-            this.db.ref(`users/${userId}/watching/${movieId}`).on('value', (snapshot) => {
-                callback(snapshot.val());
-            });
-        } catch (error) {
-            console.error('Erro ao configurar listener:', error.message);
-        }
-    }
-
-    // Remover listener
-    offWatchProgressChange(movieId) {
-        try {
-            const userId = this.auth.currentUser.uid;
-            this.db.ref(`users/${userId}/watching/${movieId}`).off();
-        } catch (error) {
-            console.error('Erro ao remover listener:', error.message);
-        }
+        // Retornar função para desligar o listener
+        return () => ref.off('value');
     }
 }
 
-// Instanciar globalmente
+// Initialize database module
 const streamlyDatabase = new StreamlyDatabase();
+streamlyDatabase.init();

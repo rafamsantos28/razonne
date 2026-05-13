@@ -5,77 +5,83 @@ class StreamlyAPI {
         this.apiEndpoint = strapiConfig.apiEndpoint;
     }
 
-    // Obter todos os filmes
     async getAllMovies() {
         try {
             const response = await fetch(`${this.baseURL}${this.apiEndpoint}`);
-            if (!response.ok) throw new Error('Erro ao obter filmes');
             const data = await response.json();
             return data.data || [];
         } catch (error) {
-            console.error('Erro ao obter filmes:', error.message);
+            console.error('Erro ao obter filmes:', error);
             return [];
         }
     }
 
-    // Obter filmes por categoria
     async getMoviesByCategory(category) {
         try {
             const movies = await this.getAllMovies();
-            return movies.filter(movie => movie.attributes.category === category);
+            return movies.filter(movie => {
+                const movieData = movie.attributes || movie;
+                return movieData.category === category;
+            });
         } catch (error) {
-            console.error('Erro ao obter filmes por categoria:', error.message);
+            console.error('Erro ao filtrar por categoria:', error);
             return [];
         }
     }
 
-    // Obter detalhes de um filme específico
     async getMovieById(movieId) {
         try {
             const response = await fetch(`${this.baseURL}${this.apiEndpoint}/${movieId}`);
-            if (!response.ok) throw new Error('Erro ao obter filme');
             const data = await response.json();
             return data.data || null;
         } catch (error) {
-            console.error('Erro ao obter filme:', error.message);
+            console.error('Erro ao obter filme:', error);
             return null;
         }
     }
 
-    // Obter todas as categorias únicas
     async getCategories() {
         try {
             const movies = await this.getAllMovies();
             const categories = new Set();
+            
             movies.forEach(movie => {
-                if (movie.attributes.category) {
-                    categories.add(movie.attributes.category);
+                const movieData = movie.attributes || movie;
+                if (movieData.category) {
+                    categories.add(movieData.category);
                 }
             });
-            return Array.from(categories).sort();
+            
+            return Array.from(categories);
         } catch (error) {
-            console.error('Erro ao obter categorias:', error.message);
+            console.error('Erro ao obter categorias:', error);
             return [];
         }
     }
 
-    // Formatar URL da imagem do Strapi
-    formatImageUrl(imageUrl) {
-        if (!imageUrl) return '';
-        if (imageUrl.startsWith('http')) return imageUrl;
-        return `${this.baseURL}${imageUrl}`;
+    // Helper para obter dados do filme (compatível com Strapi v3 e v4)
+    getMovieData(movie) {
+        return movie.attributes || movie;
     }
 
-    // Obter URL do vídeo (Dropbox)
-    getVideoUrl(videoUrl) {
-        if (!videoUrl) return '';
-        // Se for link do Dropbox, garantir que tem o parâmetro dl=1
-        if (videoUrl.includes('dropbox.com')) {
-            return videoUrl.includes('dl=0') ? videoUrl.replace('dl=0', 'dl=1') : videoUrl + '?dl=1';
-        }
-        return videoUrl;
+    // Helper para obter URL da capa
+    getPosterUrl(movie) {
+        const movieData = this.getMovieData(movie);
+        return movieData.posterUrl || movieData.poster?.data?.attributes?.url || '';
+    }
+
+    // Helper para obter URL do vídeo
+    getVideoUrl(movie) {
+        const movieData = this.getMovieData(movie);
+        return movieData.videoUrl || '';
+    }
+
+    // Helper para obter URL do trailer
+    getTrailerUrl(movie) {
+        const movieData = this.getMovieData(movie);
+        return movieData.trailerUrl || '';
     }
 }
 
-// Instanciar globalmente
+// Initialize API module
 const streamlyAPI = new StreamlyAPI();
