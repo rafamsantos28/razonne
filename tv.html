@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streamly+ - Emparelhamento TV</title>
+    <title>Ativar TV | Streamly+</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -256,12 +256,11 @@
     <div class="tv-pairing-container">
         <div class="logo">
             <img src="logo.png" alt="Streamly+ Logo">
-            <div class="logo-text">STREAMLY+</div>
         </div>
 
         <div class="tv-icon">📺</div>
 
-        <h1>Emparelhamento da TV</h1>
+        <h1>Emparelha a tua televisão</h1>
         <p class="subtitle">Faz login e introduz o código que vês na tua TV</p>
 
         <div class="error-message" id="errorMessage"></div>
@@ -286,8 +285,6 @@
                 <input type="password" id="password" name="password" required placeholder="••••••••">
             </div>
 
-            <div class="divider">OU</div>
-
             <div class="form-group">
                 <label for="codigoTV">Código da TV</label>
                 <input type="text" id="codigoTV" name="codigoTV" maxlength="6" required placeholder="Ex: XJ42AB" pattern="[A-Z0-9]{6}">
@@ -295,11 +292,6 @@
 
             <button type="submit" class="submit-btn" id="submitBtn">Emparelhar TV</button>
         </form>
-
-        <div class="toggle-link">
-            Preferes fazer login primeiro? <a onclick="goToLogin()">Clica aqui</a>
-        </div>
-    </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
