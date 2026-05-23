@@ -192,7 +192,6 @@
     <div class="registo-container">
         <div class="logo">
             <img src="logo.png" alt="Streamly+ Logo">
-            <div class="logo-text">STREAMLY+</div>
         </div>
 
         <h1>Criar Conta</h1>
@@ -210,7 +209,7 @@
                 <label for="password">Palavra-passe</label>
                 <input type="password" id="password" name="password" required placeholder="••••••••">
                 <div class="password-requirements">
-                    Mínimo 6 caracteres
+                    Mínimo de 6 caracteres
                 </div>
             </div>
 
@@ -223,7 +222,7 @@
         </form>
 
         <div class="toggle-link">
-            Já tens conta? <a onclick="toggleForm()">Faz login aqui</a>
+            Já tens conta? <a onclick="toggleForm()">Inicia sessão</a>
         </div>
     </div>
 
@@ -272,7 +271,7 @@
             try {
                 const user = await streamlyAuth.register(email, password);
                 streamlyDatabase.setUserId(user.uid);
-                showSuccess('Conta criada com sucesso! A redireccionar...');
+                showSuccess('Conta criada com sucesso! A redirecionar...');
                 setTimeout(() => {
                     window.location.href = '/inicio.html';
                 }, 1500);
