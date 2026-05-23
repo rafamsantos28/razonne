@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Streamly+</title>
+    <title>Iniciar sessão | Streamly+</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -169,7 +169,7 @@
             <div class="logo-text">STREAMLY+</div>
         </div>
 
-        <h1>Faz Login</h1>
+        <h1>Iniciar sessão</h1>
 
         <div class="error-message" id="errorMessage"></div>
 
@@ -184,7 +184,7 @@
                 <input type="password" id="password" name="password" required placeholder="••••••••">
             </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">Fazer Login</button>
+            <button type="submit" class="submit-btn" id="submitBtn">Iniciar sessão</button>
         </form>
 
         <div class="toggle-link">
@@ -219,14 +219,14 @@
             }
 
             submitBtn.disabled = true;
-            submitBtn.textContent = 'A fazer login...';
+            submitBtn.textContent = 'A iniciar sessão...';
 
             try {
                 const user = await streamlyAuth.login(email, password);
                 streamlyDatabase.setUserId(user.uid);
                 window.location.href = '/inicio.html';
             } catch (error) {
-                let errorMsg = 'Erro ao fazer login';
+                let errorMsg = 'Erro ao iniciar sessão';
                 if (error.code === 'auth/user-not-found') {
                     errorMsg = 'Utilizador não encontrado';
                 } else if (error.code === 'auth/wrong-password') {
@@ -236,7 +236,7 @@
                 }
                 showError(errorMsg);
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Fazer Login';
+                submitBtn.textContent = 'Iniciar sessão';
             }
         });
 
