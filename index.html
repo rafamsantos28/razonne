@@ -109,7 +109,6 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Formulário Backend-Ready */
         .auth-box {
             display: flex;
             gap: 1rem;
@@ -328,7 +327,11 @@
                 <div>
                     <div class="plan-name">Horizonte</div>
                     <div class="plan-price">Grátis</div>
-                    <ul class="plan-features"><li>Full HD</li><li>1 Ecrã</li><li>Com anúncios</li></ul>
+                    <ul class="plan-features">
+                        <li>Qualidade SD</li>
+                        <li>1 Ecrã</li>
+                        <li>Com anúncios</li>
+                    </ul>
                 </div>
                 <button class="plan-btn">ADERIR</button>
             </div>
@@ -337,7 +340,23 @@
                 <div>
                     <div class="plan-name">Raso ⭐</div>
                     <div class="plan-price">2,99€<span>/mês</span></div>
-                    <ul class="plan-features"><li>4K UHD + HDR</li><li>2 Ecrãs simultâneos</li><li>Sem anúncios</li></ul>
+                    <ul class="plan-features">
+                        <li>Qualidade Full HD</li>
+                        <li>2 Ecrãs simultâneos</li>
+                        <li>Sem anúncios</li>
+                    </ul>
+                </div>
+                <button class="plan-btn">ADERIR</button>
+            </div>
+            <div class="plan-card">
+                <div>
+                    <div class="plan-name">Profundo</div>
+                    <div class="plan-price">5,99€<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li>Qualidade 4K UHD + HDR</li>
+                        <li>4 Ecrãs simultâneos</li>
+                        <li>Áudio Spatial Imersivo</li>
+                    </ul>
                 </div>
                 <button class="plan-btn">ADERIR</button>
             </div>
@@ -349,8 +368,16 @@
             <div class="faq-section">
                 <h2>Perguntas Frequentes</h2>
                 <div class="faq-item">
-                    <div class="faq-question"><span>Funciona na minha Smart TV?</span><span class="faq-toggle">+</span></div>
-                    <div class="faq-answer">Sim! O ecossistema Razonne+ foi desenhado de raiz para correr perfeitamente no teu navegador, telemóveis e aplicações de televisão através do nosso sistema centralizado.</div>
+                    <div class="faq-question"><span>O que é a Razonne+?</span><span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">A Razonne+ é uma plataforma de streaming inovadora focada numa navegação fluida em 360 graus e na distribuição de conteúdos multimédia premium sem barreiras técnicas.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><span>Posso cancelar a minha subscrição quando quiser?</span><span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">Sim, perfeitamente. Não fidelizamos nenhum utilizador. Podes cancelar ou alterar o teu plano diretamente nas definições da tua conta com apenas um clique.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><span>Em que dispositivos posso assistir?</span><span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">O ecossistema Razonne+ foi desenhado para funcionar perfeitamente em computadores (via browser), smartphones, tablets e na tua Smart TV através da nossa aplicação centralizada.</div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -395,7 +422,7 @@
             });
         });
 
-        // Função temporária que vai ligar ao teu Backend Supabase no próximo passo
+        // Função temporária para o Supabase
         function solicitarAcesso() {
             const email = document.getElementById('user-email').value;
             if(!email) {
