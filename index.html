@@ -286,6 +286,7 @@
 </head>
 <body>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="neon-line"></div>
         <div class="logo-container">
@@ -297,11 +298,12 @@
             
             <div class="auth-box">
                 <input type="email" id="user-email" class="auth-input" placeholder="Insere o teu email...">
-                <button class="cta-btn" onclick="solicitarAcesso()">ENTRAR NO FLUXO</button>
+                <button class="cta-btn" id="btn-entrar" onclick="solicitarAcesso()">ENTRAR NO FLUXO</button>
             </div>
         </div>
     </section>
 
+    <!-- THE FLAT FLOW -->
     <section class="flat-flow">
         <div class="section-header">
             <h2>The Flat Flow</h2>
@@ -310,14 +312,15 @@
         <div class="flow-simulator" id="simulator">
             <div class="flow-track" id="track">
                 <div class="flow-card"><h4>Cinema Fluido</h4></div>
-                <div class="flow-card"><h4>Séries Originais</h4></div>
                 <div class="flow-card"><h4>Animação Pura</h4></div>
+                <div class="flow-card"><h4>30+ filmes em breve</h4></div>
                 <div class="flow-card"><h4>Clássicos Restaurados</h4></div>
                 <div class="flow-card"><h4>Indie Spotlight</h4></div>
             </div>
         </div>
     </section>
 
+    <!-- 3 PLANOS ORIGINAIS -->
     <section class="pricing">
         <div class="section-header">
             <h2>Escolhe a tua perspetiva</h2>
@@ -333,7 +336,7 @@
                         <li>Com anúncios</li>
                     </ul>
                 </div>
-                <button class="plan-btn">ADERIR</button>
+                <button class="plan-btn">EM BREVE</button>
             </div>
             <div class="plan-card recommended">
                 <div class="plan-badge">Mais Popular</div>
@@ -346,7 +349,7 @@
                         <li>Sem anúncios</li>
                     </ul>
                 </div>
-                <button class="plan-btn">ADERIR</button>
+                <button class="plan-btn">EM BREVE</button>
             </div>
             <div class="plan-card">
                 <div>
@@ -358,13 +361,14 @@
                         <li>Áudio Spatial Imersivo</li>
                     </ul>
                 </div>
-                <button class="plan-btn">ADERIR</button>
+                <button class="plan-btn">EM BREVE</button>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-container">
+            <!-- 3 FAQS ORIGINAIS -->
             <div class="faq-section">
                 <h2>Perguntas Frequentes</h2>
                 <div class="faq-item">
@@ -386,8 +390,60 @@
         </div>
     </footer>
 
+    <!-- INTEGRAÇÃO COM FIREBASE (Módulos Oficiais da Google v10+) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // TODO: SUBSTITUI ESTE BLOCO PELOS DADOS DO TEU PAINEL DO FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyAooIjVnGxB8fLkzD8Dc9W-xAjr6So5sVI",
+            authDomain: "razonne-c48de.firebaseapp.com",
+            projectId: "razonne-c48de",
+            storageBucket: "razonne-c48de.firebasestorage.app",
+            messagingSenderId: "410389313719",
+            appId: "1:410389313719:web:9592a15db4626c4399f532"
+        };
+
+        // Inicializar o Firebase e a Base de Dados (Firestore)
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Tornar a função acessível ao botão HTML tradicional
+        window.solicitarAcesso = async function() {
+            const emailInput = document.getElementById('user-email');
+            const btn = document.getElementById('btn-entrar');
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                alert('Por favor, insere um endereço de email válido!');
+                return;
+            }
+
+            try {
+                btn.disabled = true;
+                btn.innerText = "A GUARDAR...";
+
+                // Grava o documento diretamente na coleção "leads"
+                await addDoc(collection(db, "leads"), {
+                    email: email,
+                    dataRegisto: serverTimestamp()
+                });
+
+                alert('Sucesso! O teu email foi guardado. Bem-vindo à Razonne+!');
+                emailInput.value = ""; // Limpa o campo
+            } catch (error) {
+                console.error("Erro ao guardar dados: ", error);
+                alert('Oops! Ocorreu um erro ao guardar os teus dados. Tenta novamente mais tarde.');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "ENTRAR NO FLUXO";
+            }
+        }
+    </script>
+
     <script>
-        // Simulador de Drag
+        // Simulador de Drag (The Flat Flow)
         const slider = document.getElementById('simulator');
         const track = document.getElementById('track');
         let isDown = false; let startX; let scrollLeft;
@@ -421,16 +477,6 @@
                 if (!isActive) item.classList.add('active');
             });
         });
-
-        // Função temporária para o Supabase
-        function solicitarAcesso() {
-            const email = document.getElementById('user-email').value;
-            if(!email) {
-                alert('Por favor, insere um email válido!');
-                return;
-            }
-            alert('A ligar ao ecossistema Razonne+... Próximo passo: Ativar o teu Backend!');
-        }
     </script>
 </body>
 </html>
