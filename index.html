@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Razonne+ | Entra no fluxo</title>
-    <!-- Google Fonts para Tipografia Moderna -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Variáveis de Design --- */
         :root {
             --bg-color: #08080C;
             --neon-cyan: #00F0FF;
@@ -20,7 +18,6 @@
             --text-muted: #8A8A93;
         }
 
-        /* --- Reset e Estilos Globais --- */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +32,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Secção 1: Hero Section (O Topo) --- */
+        /* --- Hero Section --- */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -48,7 +45,6 @@
             overflow: hidden;
         }
 
-        /* Animação da Linha Néon Inicial */
         .neon-line {
             position: absolute;
             top: 50%;
@@ -61,7 +57,6 @@
             animation: expandLine 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
         }
 
-        /* Logótipo 3D Simulado */
         .logo-container {
             opacity: 0;
             transform: scale(0.8) rotateX(30deg);
@@ -114,28 +109,55 @@
             margin-bottom: 2.5rem;
         }
 
-        /* CTA Néon Aurora */
+        /* Formulário Backend-Ready */
+        .auth-box {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .auth-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 4px;
+            width: 70%;
+            transition: all 0.3s ease;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
         .cta-btn {
             background: transparent;
             border: 2px solid var(--plasma-aurora);
             color: #fff;
-            padding: 1rem 3rem;
+            padding: 1rem 2rem;
             font-size: 1rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             cursor: pointer;
-            position: relative;
+            border-radius: 4px;
             transition: all 0.4s ease;
             box-shadow: 0 0 15px rgba(255, 0, 122, 0.3);
+            white-space: nowrap;
         }
 
         .cta-btn:hover {
             background: var(--plasma-aurora);
-            box-shadow: 0 0 30px var(--plasma-aurora), 0 0 50px var(--plasma-aurora);
+            box-shadow: 0 0 30px var(--plasma-aurora);
             transform: translateY(-2px);
         }
 
-        /* --- Secção 2: Proposta de Valor (The Flat Flow) --- */
+        /* --- Secção 2: The Flat Flow --- */
         .flat-flow {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, var(--bg-color) 0%, #0d0d15 50%, var(--bg-color) 100%);
@@ -144,30 +166,14 @@
         .section-header {
             text-align: center;
             max-width: 700px;
-            margin: 0auto 4rem auto;
+            margin: 0 auto 4rem auto;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); }
 
-        .section-header p {
-            color: var(--text-muted);
-        }
-
-        /* Simulador Interativo Horizontal */
-        .flow-simulator {
-            width: 100%;
-            overflow: hidden;
-            cursor: grab;
-            padding: 2rem 0;
-            position: relative;
-        }
-
-        .flow-simulator:active {
-            cursor: grabbing;
-        }
+        .flow-simulator { width: 100%; overflow: hidden; cursor: grab; padding: 2rem 0; position: relative; }
+        .flow-simulator:active { cursor: grabbing; }
 
         .flow-track {
             display: flex;
@@ -193,76 +199,36 @@
             transition: transform 0.3s ease;
         }
 
-        .flow-card:hover {
-            transform: scale(1.03);
-            border-color: rgba(0, 240, 255, 0.3);
-        }
-
-        /* Gradiente placeholder para simular capas de filmes/séries */
+        .flow-card:hover { transform: scale(1.03); border-color: rgba(0, 240, 255, 0.3); }
         .flow-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, rgba(0,240,255,0.15), rgba(255,0,122,0.15));
-            z-index: 1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, rgba(0,240,255,0.15), rgba(255,0,122,0.15)); z-index: 1;
         }
 
-        .flow-card h4 {
-            z-index: 2;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
+        .flow-card h4 { z-index: 2; font-size: 1.2rem; font-weight: 600; }
 
-        /* Texto de apoio técnico */
         .flow-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1100px;
-            margin: 4rem auto 0 auto;
-            padding-top: 3rem;
+            gap: 3rem; max-width: 1100px; margin: 4rem auto 0 auto; padding-top: 3rem;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .feature-box h3 {
-            color: var(--neon-cyan);
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
+        .feature-box h3 { color: var(--neon-cyan); font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .feature-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-        .feature-box p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* --- Secção 3: Tabela de Planos --- */
-        .pricing {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            align-items: stretch;
-        }
+        /* --- Secção 3: Planos --- */
+        .pricing { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
 
         .plan-card {
             background: rgba(18, 18, 26, 0.6);
             border: 1px solid var(--gray-metallic);
             padding: 3rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; backdrop-filter: blur(10px); transition: all 0.3s ease;
         }
 
-        /* Destaque do Plano Raso (Recomendado) */
         .plan-card.recommended {
             border-color: var(--neon-cyan);
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
@@ -271,205 +237,77 @@
         }
 
         .plan-badge {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--neon-cyan);
-            color: #000;
-            padding: 0.25rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            position: absolute; top: -15px; right: 20px; background: var(--neon-cyan);
+            color: #000; padding: 0.25rem 1rem; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;
         }
 
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-        }
-
-        .plan-price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin-bottom: 3rem;
-        }
-
-        .plan-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: #e2e2e9;
-            font-size: 0.95rem;
-        }
+        .plan-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .plan-price { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; }
+        .plan-price span { font-size: 1rem; color: var(--text-muted); }
+        .plan-features { list-style: none; margin-bottom: 3rem; }
+        .plan-features li { padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #e2e2e9; }
 
         .plan-btn {
-            width: 100%;
-            padding: 1rem;
-            background: transparent;
-            border: 1px solid var(--text-main);
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-main);
+            color: #fff; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
         }
 
-        .plan-card.recommended .plan-btn {
-            background: var(--neon-cyan);
-            border-color: var(--neon-cyan);
-            color: #000;
-        }
+        .plan-card.recommended .plan-btn { background: var(--neon-cyan); border-color: var(--neon-cyan); color: #000; }
 
-        .plan-card.recommended .plan-btn:hover {
-            background: transparent;
-            color: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
-        }
+        /* --- Secção 4: Footer & FAQ --- */
+        footer { background: #040406; padding: 6rem 2rem 3rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .faq-section { max-width: 800px; margin: 0 auto 5rem auto; }
+        .faq-section h2 { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0; cursor: pointer; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; font-weight: 600; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; color: var(--text-muted); font-size: 0.95rem; }
+        .faq-item.active .faq-answer { max-height: 200px; margin-top: 1rem; }
+        .faq-toggle { transition: transform 0.3s ease; }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+        .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-top: 3rem; }
 
-        /* --- Secção 4: Rodapé & FAQ --- */
-        footer {
-            background: #040406;
-            padding: 6rem 2rem 3rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* FAQ Estilo Acórdão */
-        .faq-section {
-            max-width: 800px;
-            margin: 0 auto 5rem auto;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 1.5rem 0;
-            cursor: pointer;
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, margin-top 0.3s ease;
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            margin-top: 1rem;
-        }
-
-        .faq-toggle {
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--neon-cyan);
-        }
-
-        /* --- Keyframes Animados --- */
         @keyframes expandLine {
             0% { width: 0; left: 50%; }
             50% { width: 100%; left: 0; }
             100% { width: 100%; left: 0; height: 100vh; background: transparent; box-shadow: none; }
         }
+        @keyframes revealLogo { 0% { opacity: 0; transform: scale(0.8) rotateX(30deg); } 100% { opacity: 1; transform: scale(1) rotateX(0deg); } }
+        @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        @keyframes revealLogo {
-            0% { opacity: 0; transform: scale(0.8) rotateX(30deg); }
-            100% { opacity: 1; transform: scale(1) rotateX(0deg); }
-        }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Responsividade --- */
         @media (max-width: 768px) {
             .logo-text { font-size: 2.5rem; }
             .hero h1 { font-size: 2.2rem; }
+            .auth-box { flex-direction: column; }
+            .auth-input { width: 100%; }
             .pricing-grid { grid-template-columns: 1fr; }
             .plan-card.recommended { transform: none; }
-            .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .footer-links a { margin: 0 0.75rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- SECÇÃO 1: HERO SECTION -->
     <section class="hero">
         <div class="neon-line"></div>
-        
         <div class="logo-container">
             <div class="logo-text">Razonne+</div>
         </div>
-
         <div class="hero-content">
-            <h1>O entretenimento não tem barreiras.<br>Entra no fluxo.</h1>
-            <p>Esquece as grelhas rígidas. Experimenta a primeira plataforma de streaming com interface fluida de 360° e áudio imersivo real.</p>
-            <button class="cta-btn">BREVEMENTE</button>
+            <h1>O entretenimento sem barreiras.<br>Em qualquer ecrã.</h1>
+            <p>Do teu smartphone à televisão da tua sala. Experimenta o streaming com a interface fluida de 360° e áudio imersivo real.</p>
+            
+            <div class="auth-box">
+                <input type="email" id="user-email" class="auth-input" placeholder="Insere o teu email...">
+                <button class="cta-btn" onclick="solicitarAcesso()">ENTRAR NO FLUXO</button>
+            </div>
         </div>
     </section>
 
-    <!-- SECÇÃO 2: PROPOSTA DE VALOR (THE FLAT FLOW) -->
     <section class="flat-flow">
         <div class="section-header">
             <h2>The Flat Flow</h2>
-            <p>Arrasta e explora. Sem cliques, sem esperas, sem limites.</p>
+            <p>Arrasta e explora no computador, telemóvel ou TV.</p>
         </div>
-
-        <!-- Simulador de Scroll Infinito por Drag -->
         <div class="flow-simulator" id="simulator">
             <div class="flow-track" id="track">
                 <div class="flow-card"><h4>Cinema Fluido</h4></div>
@@ -479,162 +317,61 @@
                 <div class="flow-card"><h4>Indie Spotlight</h4></div>
             </div>
         </div>
-
-        <div class="flow-features">
-            <div class="feature-box">
-                <h3>Adeus Grelhas Aborrecidas</h3>
-                <p>Navega num plano contínuo desenhado para o teu olhar. Descobre conteúdo de forma orgânica, guiado pela intuição.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Fidelidade Máxima</h3>
-                <p>Transmissão sem compressão de dados. O cinema em tua casa exatamente como o realizador o idealizou.</p>
-            </div>
-        </div>
     </section>
 
-    <!-- SECÇÃO 3: TABELA DE PLANOS -->
     <section class="pricing">
         <div class="section-header">
             <h2>Escolhe a tua perspetiva</h2>
-            <p>Planos transparentes e diretos. Sem fidelização.</p>
         </div>
-
         <div class="pricing-grid">
-            <!-- Plano Horizonte -->
             <div class="plan-card">
                 <div>
                     <div class="plan-name">Horizonte</div>
                     <div class="plan-price">Grátis</div>
-                    <ul class="plan-features">
-                        <li>Full HD</li>
-                        <li>1 Ecrã em simultâneo</li>
-                        <li>Com anúncios fluidos</li>
-                    </ul>
+                    <ul class="plan-features"><li>Full HD</li><li>1 Ecrã</li><li>Com anúncios</li></ul>
                 </div>
-                <button class="plan-btn">EM BREVE</button>
+                <button class="plan-btn">ADERIR</button>
             </div>
-
-            <!-- Plano Raso (Recomendado) -->
             <div class="plan-card recommended">
                 <div class="plan-badge">Mais Popular</div>
                 <div>
                     <div class="plan-name">Raso ⭐</div>
                     <div class="plan-price">2,99€<span>/mês</span></div>
-                    <ul class="plan-features">
-                        <li>4K UHD + HDR</li>
-                        <li>2 Ecrãs em simultâneo</li>
-                        <li>Sem anúncios</li>
-                        <li>Acesso antecipado a estreias</li>
-                    </ul>
+                    <ul class="plan-features"><li>4K UHD + HDR</li><li>2 Ecrãs simultâneos</li><li>Sem anúncios</li></ul>
                 </div>
-                <button class="plan-btn">EM BREVE</button>
-            </div>
-
-            <!-- Plano Infinito -->
-            <div class="plan-card">
-                <div>
-                    <div class="plan-name">Infinito</div>
-                    <div class="plan-price">5,99€<span>/mês</span></div>
-                    <ul class="plan-features">
-                        <li>4K / Bitrate Máximo</li>
-                        <li>Ecrãs Ilimitados</li>
-                        <li>Áudio Imersivo Real</li>
-                        <li>Sem anúncios</li>
-                    </ul>
-                </div>
-                <button class="plan-btn">EM BREVE</button>
+                <button class="plan-btn">ADERIR</button>
             </div>
         </div>
     </section>
 
-    <!-- SECÇÃO 4: RODAPÉ & FAQ -->
     <footer>
         <div class="footer-container">
-            
             <div class="faq-section">
                 <h2>Perguntas Frequentes</h2>
-                
                 <div class="faq-item">
-                    <div class="faq-question">
-                        <span>O que é a navegação 360° fluida?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        É a nossa tecnologia exclusiva de interface. Em vez de listas verticais estáticas, o catálogo move-se num plano infinito tridimensional que responde ao teu ritmo de navegação.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Posso cancelar a subscrição quando quiser?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Sim. Não temos qualquer contrato de fidelização. Podes cancelar ou alterar o teu plano a qualquer momento diretamente nas definições da tua conta.
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>O que significa transmissão sem compressão?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Ao contrário do streaming tradicional que esmaga a qualidade do vídeo, o plano Infinito entrega o bitrate original do estúdio, garantindo pretos puros e zero artefactos digitais.
-                    </div>
+                    <div class="faq-question"><span>Funciona na minha Smart TV?</span><span class="faq-toggle">+</span></div>
+                    <div class="faq-answer">Sim! O ecossistema Razonne+ foi desenhado de raiz para correr perfeitamente no teu navegador, telemóveis e aplicações de televisão através do nosso sistema centralizado.</div>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <div>&copy; 2026 Razonne+. Todos os direitos reservados.</div>
+                &copy; 2026 Razonne+. Todos os direitos reservados.
             </div>
-
         </div>
     </footer>
 
-    <!-- LÓGICA JAVASCRIPT (Interatividade) -->
     <script>
-        /* --- Lógica do Simulador Interativo (Drag to Scroll) --- */
+        // Simulador de Drag
         const slider = document.getElementById('simulator');
         const track = document.getElementById('track');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+        let isDown = false; let startX; let scrollLeft;
 
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - track.offsetLeft;
-            scrollLeft = getTranslateX();
-        });
-
-        slider.addEventListener('mouseleave', () => { isDown = false; });
-        slider.addEventListener('mouseup', () => { isDown = false; });
-
+        slider.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = getTranslateX(); });
+        slider.addEventListener('mouseleave', () => isDown = false);
+        slider.addEventListener('mouseup', () => isDown = false);
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.5; // Velocidade do arrasto
-            let targetX = scrollLeft + walk;
-
-            // Limites simples para o efeito de arrasto
-            if (targetX > 0) targetX = 0;
-            const maxScroll = -(track.scrollWidth - slider.clientWidth);
-            if (targetX < maxScroll) targetX = maxScroll;
-
-            track.style.transform = `translateX(${targetX}px)`;
-        });
-
-        // Suporte para Toque em Dispositivos Móveis
-        slider.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - track.offsetLeft;
-            scrollLeft = getTranslateX();
-        });
-        slider.addEventListener('touchend', () => { isDown = false; });
-        slider.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - track.offsetLeft;
             const walk = (x - startX) * 1.5;
             let targetX = scrollLeft + walk;
             if (targetX > 0) targetX = 0;
@@ -649,17 +386,24 @@
             return matrix.m41;
         }
 
-        /* --- Lógica do FAQ (Acórdão) --- */
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isActive) {
-                    item.classList.add('active');
-                }
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
             });
         });
+
+        // Função temporária que vai ligar ao teu Backend Supabase no próximo passo
+        function solicitarAcesso() {
+            const email = document.getElementById('user-email').value;
+            if(!email) {
+                alert('Por favor, insere um email válido!');
+                return;
+            }
+            alert('A ligar ao ecossistema Razonne+... Próximo passo: Ativar o teu Backend!');
+        }
     </script>
 </body>
 </html>
