@@ -1,0 +1,73 @@
+<!-- player.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A reproduzir | Razonne+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #000000; color: #ffffff; }
+    </style>
+</head>
+<body class="w-screen h-screen overflow-hidden bg-black flex items-center justify-center relative group">
+
+    <!-- Botão Voltar (Oculta automaticamente quando o rato está parado) -->
+    <button onclick="window.location.href='catalogo.html'" class="absolute top-6 left-6 z-50 bg-black/60 hover:bg-cyan-400 hover:text-black p-4 rounded-xl text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer backdrop-blur-md border border-zinc-800">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao Catálogo
+    </button>
+
+    <!-- Player de Vídeo HTML5 de Alta Performance -->
+    <video id="video-player" controls class="w-full h-full object-contain" autoplay>
+        <!-- O link será atualizado dinamicamente pelo script através do Firestore/Bunny -->
+        <source src="" type="video/mp4">
+        O teu navegador não suporta a reprodução deste formato de vídeo.
+    </video>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = { 
+            apiKey: "AIzaSyChI3DvRXSjOBEDRcnEuyyOuaRzrqrUzVk", 
+            authDomain: "razonne-3724a.firebaseapp.com", 
+            projectId: "razonne-3724a" 
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function carregarFilmeNoPlayer() {
+            const parametros = new URLSearchParams(window.location.search);
+            const filmeId = parametros.get('id');
+            
+            if(!filmeId) {
+                window.location.href = 'catalogo.html';
+                return;
+            }
+
+            try {
+                const docRef = doc(db, "movies", filmeId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const dadosFilme = docSnap.data();
+                    const player = document.getElementById('video-player');
+                    
+                    // Configura o link direto da Pull Zone da Bunny.net salvo no Firestore
+                    player.src = dadosFilme.videoUrl || "https://razonne-media.b-cdn.net/videos/default.mp4";
+                    player.load();
+                    document.title = `${dadosFilme.title} | Razonne+`;
+                } else {
+                    console.error("Filme não encontrado!");
+                }
+            } catch (erro) {
+                console.error("Erro na ligação ao servidor de média:", erro);
+            }
+        }
+
+        window.onload = carregarFilmeNoPlayer;
+    </script>
+</body>
+</html>
