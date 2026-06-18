@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início | Razonne+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #040108; color: #ffffff; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="overflow-x-hidden min-h-screen bg-[#040108]">
+
+    <!-- O ficheiro navbar.js injetará o header automaticamente aqui -->
+
+    <!-- Banner Principal Animado (Hero) -->
+    <section id="hero-destaque" class="relative w-full h-[75vh] flex items-end p-6 md:p-16 bg-cover bg-center transition-all duration-500" style="background-image: url('https://razonne-media.b-cdn.net/backdrops/interstellar-bg.jpg');">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#040108] via-[#040108]/20 to-[#040108]/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#040108]/90 via-transparent to-transparent"></div>
+        
+        <div class="relative z-10 max-w-2xl space-y-4">
+            <span class="bg-cyan-400 text-black text-[9px] font-black tracking-widest uppercase px-2 py-1 rounded">Destaque da Semana</span>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter uppercase" id="hero-title">Interstellar</h1>
+            <p class="text-xs md:text-sm text-zinc-300 leading-relaxed" id="hero-desc">As aventuras de um grupo de exploradores que utilizam um buraco negro recém-descoberto para superar as limitações humanas em viagens espaciais.</p>
+            <div class="flex gap-4 pt-2">
+                <button onclick="window.location.href='player.html?id=interstellar'" class="bg-white text-black hover:bg-cyan-400 hover:text-white px-6 py-3 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer">
+                    <i class="fa-solid fa-play"></i> Ver Agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contentor dos Sliders -->
+    <main id="main-catalog" class="px-6 md:px-16 space-y-12 pb-24 -mt-12 relative z-20"></main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import "./navbar.js";
+
+        const firebaseConfig = { 
+            apiKey: "AIzaSyChI3DvRXSjOBEDRcnEuyyOuaRzrqrUzVk", 
+            authDomain: "razonne-3724a.firebaseapp.com", 
+            projectId: "razonne-3724a" 
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let todosFilmes = [];
+
+        async function obterDados() {
+            const snapshot = await getDocs(collection(db, "movies"));
+            snapshot.forEach(doc => todosFilmes.push({ id: doc.id, ...doc.data() }));
+            renderizarSessoes();
+        }
+
+        function renderizarSessoes() {
+            const main = document.getElementById('main-catalog');
+            main.innerHTML = '';
+            
+            const categorias = [...new Set(todosFilmes.map(m => m.category))];
+            
+            categorias.forEach(cat => {
+                const filmesFiltrados = todosFilmes.filter(m => m.category === cat);
+                const section = document.createElement('section');
+                section.className = "space-y-3";
+                section.innerHTML = `
+                    <h3 class="text-sm md:text-base font-black uppercase tracking-widest text-zinc-300 hover:text-cyan-400 transition-colors cursor-pointer">${cat}</h3>
+                    <div class="flex gap-4 overflow-x-auto no-scrollbar py-2">
+                        ${filmesFiltrados.map(f => `
+                            <div onclick="window.location.href='player.html?id=${f.id}'" class="min-w-[140px] md:min-w-[200px] aspect-[2/3] bg-purple-950/20 rounded-2xl overflow-hidden border border-purple-950/40 hover:border-cyan-400 transition-all duration-300 hover:scale-105 cursor-pointer relative group shadow-md">
+                                <img src="${f.images?.poster}" alt="${f.title}" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                                    <p class="text-xs font-bold uppercase truncate">${f.title}</p>
+                                    <p class="text-[9px] text-cyan-400 font-bold mt-1">${f.year} • ${f.duration}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                main.appendChild(section);
+            });
+        }
+
+        // Listener da Pesquisa da Navbar Global
+        document.body.addEventListener('input', (e) => {
+            if (e.target && e.target.id === 'nav-search-input') {
+                const termo = e.target.value.toLowerCase();
+                const hero = document.getElementById('hero-destaque');
+                if(termo.trim() === "") {
+                    hero.style.display = 'flex';
+                    renderizarSessoes();
+                } else {
+                    hero.style.display = 'none';
+                    const filtrados = todosFilmes.filter(f => f.title.toLowerCase().includes(termo));
+                    const main = document.getElementById('main-catalog');
+                    main.innerHTML = `
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 pt-24">
+                            ${filtrados.map(f => `
+                                <div onclick="window.location.href='player.html?id=${f.id}'" class="aspect-[2/3] bg-purple-950/20 rounded-2xl overflow-hidden border border-purple-950/40 hover:border-cyan-400 transition-all cursor-pointer">
+                                    <img src="${f.images?.poster}" class="w-full h-full object-cover">
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+            }
+        });
+
+        window.onload = obterDados;
+    </script>
+</body>
+</html>
