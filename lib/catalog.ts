@@ -67,6 +67,8 @@ export const catalog: Title[] = [
     duration: "1h 28m",
     genre: "Terror",
     playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
+    poster: "/posters/leviticus.jpg",
+    backdrop: "/backdrops/leviticus.jpg",
     assetId: "51MVjg8rvwn01pTPEcwtR7e6hSKk6of3701WoN6qvtmiM", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
     // Exemplo de preenchimento depois de correres o script para este título:
     // subtitles: [{ lang: "pt", name: "Português" }, { lang: "en", name: "English" }],
