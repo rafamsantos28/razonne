@@ -91,7 +91,7 @@ export default function TitleDetailsPage({
             </Link>
           ) : (
             <span className="rounded-md border border-rim px-6 py-3 text-sm font-medium text-mist">
-              Vídeo por adicionar
+              Em breve
             </span>
           )}
           <Link
