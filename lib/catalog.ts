@@ -132,6 +132,16 @@ export const catalog: Title[] = [
     duration: "1h 35m",
     genre: "Animação",
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
+  },
+  {
+    slug: "obsession-a-felicidade-e-relativa",
+    title: "Obsession: A Felicidade é Relativa",
+    synopsis:
+      "Bear trabalha numa loja de música ao lado de Nikki (Inde Navarrette), por quem há muito está apaixonado.",
+    year: 2026,
+    duration: "1h 48m",
+    genre: "Terror",
+    playbackId: "UUBPBhLuBdj0202zYTn006gadfQHXQnfCeIhwgYv5Edaes",
   }
 ];
 
