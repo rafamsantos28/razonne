@@ -102,8 +102,8 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 38m",
     genre: "Animação",
-    poster: "/posters/super-mario-galaxy-o-filme",
-    backdrop: "/backdrops/super-mario-galaxy-o-filme",
+    poster: "/posters/super-mario-galaxy-o-filme.jpg",
+    backdrop: "/backdrops/super-mario-galaxy-o-filme.jpg",
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
     assetId: "Ck00GRxgj119R15wglt324U6eO9ZWy4ce9dOrxF00mcM4", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
     // Exemplo de preenchimento depois de correres o script para este título:
@@ -129,9 +129,9 @@ export const catalog: CatalogItem[] = [
     slug: "michael",
     title: "Michael",
     synopsis:
-      "Uma investigação a um hospital abandonado revela mais do que documentos perdidos — revela porque é que ninguém que lá entra à noite volta a falar sobre isso.",
+      "Com Jaafar Jackson, sobrinho de Michael Jackson​, a dar vida ao protagonista, o filme acompanha o percurso artístico e pessoal do artista, atravessando o contexto familiar que o fez entrar na indústria musical com apenas cinco anos de idade, a ascensão meteórica ao lado dos The Jackson 5 e o seu esforço de continuar numa carreira a solo, sempre marcada por um excesso de exposição mediática.",
     year: 2026,
-    duration: "1h 34m",
+    duration: "2h 08m",
     genre: "Biografia",
     poster: "/posters/michael.jpg",
     backdrop: "backdrops/michael.jpg",
@@ -144,7 +144,7 @@ export const catalog: CatalogItem[] = [
     synopsis:
       "Frustrado por, mais uma vez, não ver o seu valor reconhecido com uma promoção, Stan resolve deitar tudo a perder e roubar do cofre do chefe uma mala com um milhão de euros, dinheiro obtido de forma dúbia.",
     year: 2025,
-    duration: "2h 05m",
+    duration: "1h 30m",
     genre: "Comédia",
     poster: "/posters/ladroes-da-treta.jpg",
     backdrop: "/backdrops/ladroes-da-treta.jpg",
