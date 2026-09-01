@@ -74,7 +74,7 @@ export const catalog: Title[] = [
     slug: "minimos-e-monstros",
     title: "Mínimos e Monstros",
     synopsis:
-      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido. Algo hiperactivos, são dotados de um humor só comparável à sua enorme tendência para tropelias.",
+      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido. Algo hiperactivos, são dotados de um humor só comparável à sua enor[...]",
     year: 2026,
     duration: "1h 32m",
     genre: "Animação",
@@ -84,7 +84,7 @@ export const catalog: Title[] = [
     slug: "toy-story-5",
     title: "Toy Story 5",
     synopsis:
-      "Passados mais de 30 anos sobre a estreia de "Toy Story - Os Rivais", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
+      "Passados mais de 30 anos sobre a estreia de \"Toy Story - Os Rivais\", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
     year: 2026,
     duration: "1h 40m",
     genre: "Animação",
@@ -94,7 +94,7 @@ export const catalog: Title[] = [
     slug: "scary-movie-whats-up",
     title: "Scary Movie: What's Up",
     synopsis:
-      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violência.Três gerações de mulheres da mesma família reencontram-se numa casa de campo para decidir o que fazer com a herança — e com o silêncio que as separa.",
+      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violênci[...]",
     year: 2026,
     duration: "1h 35m",
     genre: "Comédia",
@@ -114,7 +114,7 @@ export const catalog: Title[] = [
     slug: "jackass-ultimo-shot-de-loucura",
     title: "Jackass: Último Shot de Loucura",
     synopsis:
-      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma – que afirmam ser a última – ronda de acrobacias, quedas, embates e situações capazes de fazer gelar o sangue dos mais audazes.",
+      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma – que afirma[...]",
     year: 2026,
     duration: "1h 35m",
     genre: "Comédia",
