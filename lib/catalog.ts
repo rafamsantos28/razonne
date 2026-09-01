@@ -59,70 +59,80 @@ export type Title = {
 
 export const catalog: Title[] = [
   {
-    slug: "nevoa-alta",
-    title: "Névoa Alta",
+    slug: "leviticus",
+    title: "Leviticus",
     synopsis:
-      "Numa vila piscatória do norte, uma engenheira regressa a casa para investigar a morte do pai e descobre uma rede de segredos escondida sob o cais antigo.",
-    year: 2024,
-    duration: "1h 47m",
-    genre: "Drama",
-    playbackId: "DS00Spx1CV902MCtPj5WknGlR102V5HFkDe",
-    assetId: "", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
+      "Ambientada numa comunidade cristã rural, isolada e extremamente conservadora no interior de Victoria, na Austrália, a história acompanha dois rapazes adolescentes, Naim e Ryan.",
+    year: 2026,
+    duration: "1h 28m",
+    genre: "Terror",
+    playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
+    assetId: "51MVjg8rvwn01pTPEcwtR7e6hSKk6of3701WoN6qvtmiM", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
     // Exemplo de preenchimento depois de correres o script para este título:
     // subtitles: [{ lang: "pt", name: "Português" }, { lang: "en", name: "English" }],
     // audioTracks: [{ lang: "en", name: "English" }],
     featured: true,
   },
   {
-    slug: "linha-de-fuga",
-    title: "Linha de Fuga",
+    slug: "minimos-e-monstros",
+    title: "Mínimos e Monstros",
     synopsis:
-      "Um piloto de rali reformado é arrastado de volta às pistas quando o filho desaparece na véspera da corrida mais perigosa da sua carreira.",
-    year: 2023,
-    duration: "1h 58m",
-    genre: "Ação",
-    playbackId: "",
+      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido.",
+    year: 2026,
+    duration: "1h 32m",
+    genre: "Animação",
+    playbackId: "No7024O54AavSSzfnJQf1MVfa01Kju9BojUiJdNe7kKF4",
   },
   {
-    slug: "sala-27",
-    title: "Sala 27",
+    slug: "toy-story-5",
+    title: "Toy Story 5",
     synopsis:
-      "Uma investigação a um hospital abandonado revela mais do que documentos perdidos — revela porque é que ninguém que lá entra à noite volta a falar sobre isso.",
-    year: 2022,
-    duration: "1h 34m",
-    genre: "Suspense",
-    playbackId: "",
+      "Passados mais de 30 anos sobre a estreia de \"Toy Story - Os Rivais\", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
+    year: 2026,
+    duration: "1h 40m",
+    genre: "Animação",
+    playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
   },
   {
-    slug: "aguas-de-marco",
-    title: "Águas de Março",
+    slug: "scary-movie-whats-up",
+    title: "Scary Movie: What's Up",
     synopsis:
-      "Três gerações de mulheres da mesma família reencontram-se numa casa de campo para decidir o que fazer com a herança — e com o silêncio que as separa.",
-    year: 2021,
-    duration: "2h 05m",
-    genre: "Drama",
-    playbackId: "",
+      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violência.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Comédia",
+    playbackId: "WJJTca8WbxJR42eu1DTN023zGeoTiMKF01TZ4GHIgVPZo",
   },
   {
-    slug: "o-ultimo-turno",
-    title: "O Último Turno",
+    slug: "evil-dead-burn",
+    title: "Evil Dead Burn",
     synopsis:
-      "Numa refinaria à beira do encerramento, um grupo de operários planeia um último golpe antes que as máquinas parem para sempre.",
-    year: 2020,
-    duration: "1h 51m",
-    genre: "Thriller",
-    playbackId: "",
+      "Após a morte do marido, Alice aceita o convite para passar alguns dias em casa dos sogros.",
+    year: 2026,
+    duration: "1h 50m",
+    genre: "Terror",
+    playbackId: "49hkoOpsGMKUim1a6DXdfNjIii1cD02OfaCVpGXPwN8M",
   },
   {
-    slug: "constelacao",
-    title: "Constelação",
+    slug: "jackass-ultimo-shot-de-loucura",
+    title: "Jackass: Último Shot de Loucura",
     synopsis:
-      "Um documentário sobre os últimos observatórios analógicos da Europa e as pessoas que insistem em olhar para o céu à moda antiga.",
-    year: 2024,
-    duration: "1h 12m",
-    genre: "Documentário",
-    playbackId: "",
+      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Comédia",
+    playbackId: "j2HP9dGKJQzZgwUCT009eOIORvvyWdOhMQn7Z3UAJlQg",
   },
+  {
+    slug: "super-mario-galaxy-o-filme",
+    title: "Super Mario Galaxy: O Filme",
+    synopsis:
+      "Depois de salvarem o Reino dos Cogumelos, onde agora residem, Mario e Luigi — os simpáticos canalizadores de Brooklyn de ascendência italiana — vêem-se a braços com uma luta intergaláctica.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Animação",
+    playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
+  }
 ];
 
 export function getTitleBySlug(slug: string): Title | undefined {
