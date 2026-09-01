@@ -92,80 +92,7 @@ export type CatalogItem = Movie | Show;
 // O primeiro título com `featured: true` é usado no ecrã principal.
 // ---------------------------------------------------------------------------
 
-export const catalog: Title[] = [
-  {
-    kind: "movie",
-    slug: "leviticus",
-    title: "Leviticus",
-    synopsis:
-      "Ambientada numa comunidade cristã rural, isolada e extremamente conservadora no interior de Victoria, na Austrália, a história acompanha dois rapazes adolescentes, Naim e Ryan.",
-    year: 2026,
-    duration: "1h 28m",
-    genre: "Terror",
-    playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
-    poster: "/posters/leviticus.jpg",
-    backdrop: "/backdrops/leviticus.jpg",
-    assetId: "51MVjg8rvwn01pTPEcwtR7e6hSKk6of3701WoN6qvtmiM", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
-    // Exemplo de preenchimento depois de correres o script para este título:
-    // subtitles: [{ lang: "pt", name: "Português" }, { lang: "en", name: "English" }],
-    // audioTracks: [{ lang: "en", name: "English" }],
-    featured: true,
-  },
-  {
-    kind: "movie",
-    slug: "minimos-e-monstros",
-    title: "Mínimos e Monstros",
-    synopsis:
-      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido.",
-    year: 2026,
-    duration: "1h 32m",
-    genre: "Animação",
-    playbackId: "No7024O54AavSSzfnJQf1MVfa01Kju9BojUiJdNe7kKF4",
-  },
-  {
-    kind: "movie",
-    slug: "toy-story-5",
-    title: "Toy Story 5",
-    synopsis:
-      "Passados mais de 30 anos sobre a estreia de \"Toy Story - Os Rivais\", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
-    year: 2026,
-    duration: "1h 40m",
-    genre: "Animação",
-    playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
-  },
-  {
-    kind: "movie",
-    slug: "scary-movie-whats-up",
-    title: "Scary Movie: What's Up",
-    synopsis:
-      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violência.",
-    year: 2026,
-    duration: "1h 35m",
-    genre: "Comédia",
-    playbackId: "WJJTca8WbxJR42eu1DTN023zGeoTiMKF01TZ4GHIgVPZo",
-  },
-  {
-    kind: "movie",
-    slug: "evil-dead-burn",
-    title: "Evil Dead Burn",
-    synopsis:
-      "Após a morte do marido, Alice aceita o convite para passar alguns dias em casa dos sogros.",
-    year: 2026,
-    duration: "1h 50m",
-    genre: "Terror",
-    playbackId: "49hkoOpsGMKUim1a6DXdfNjIii1cD02OfaCVpGXPwN8M",
-  },
-  {
-    kind: "movie",
-    slug: "jackass-ultimo-shot-de-loucura",
-    title: "Jackass: Último Shot de Loucura",
-    synopsis:
-      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma.",
-    year: 2026,
-    duration: "1h 35m",
-    genre: "Comédia",
-    playbackId: "j2HP9dGKJQzZgwUCT009eOIORvvyWdOhMQn7Z3UAJlQg",
-  },
+export const catalog: CatalogItem[] = [
   {
     kind: "movie",
     slug: "super-mario-galaxy-o-filme",
@@ -173,41 +100,66 @@ export const catalog: Title[] = [
     synopsis:
       "Depois de salvarem o Reino dos Cogumelos, onde agora residem, Mario e Luigi — os simpáticos canalizadores de Brooklyn de ascendência italiana — vêem-se a braços com uma luta intergaláctica.",
     year: 2026,
-    duration: "1h 35m",
+    duration: "1h 38m",
     genre: "Animação",
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
+    assetId: "Ck00GRxgj119R15wglt324U6eO9ZWy4ce9dOrxF00mcM4", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
+    // Exemplo de preenchimento depois de correres o script para este título:
+    // subtitles: [{ lang: "pt", name: "Português" }, { lang: "en", name: "English" }],
+    // audioTracks: [{ lang: "en", name: "English" }],
+    featured: true,
+  },
+  {
+    kind: "movie",
+    slug: "leviticus",
+    title: "Leviticus",
+    synopsis:
+      "Acompanha dois adolescentes numa comunidade rural isolada que fogem de uma entidade sobrenatural violenta após um ritual de conversão religiosa falhado.",
+    year: 2026,
+    duration: "1h 28m",
+    genre: "Terror",
+    playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
   },
   {
     kind: "movie",
     slug: "michael",
     title: "Michael",
     synopsis:
-      "  Com Jaafar Jackson, sobrinho de Michael Jackson​, a dar vida ao protagonista, o filme acompanha o percurso artístico e pessoal do artista, atravessando o contexto familiar que o fez entrar na indústria musical com apenas cinco anos de idade, a ascensão meteórica ao lado dos The Jackson 5 e o seu esforço de continuar numa carreira a solo, sempre marcada por um excesso de exposição mediática.",
+      "Uma investigação a um hospital abandonado revela mais do que documentos perdidos — revela porque é que ninguém que lá entra à noite volta a falar sobre isso.",
     year: 2026,
-    duration: "2h 08m",
+    duration: "1h 34m",
     genre: "Biografia",
-    playbackId: "wW01Hwwx95ZhzCVjf8ofWQ3OWcdIDWOQcjFD5uw3jAyg",
-    poster: "/posters/michael.jpg",
-    backdrop: "/backdrops/michael.jpg",
+    playbackId: "",
+  },
+  {
+    kind: "movie",
+    slug: "ladroes-da-treta",
+    title: "Ladrões da Treta",
+    synopsis:
+      "Frustrado por, mais uma vez, não ver o seu valor reconhecido com uma promoção, Stan resolve deitar tudo a perder e roubar do cofre do chefe uma mala com um milhão de euros, dinheiro obtido de forma dúbia.",
+    year: 2025,
+    duration: "2h 05m",
+    genre: "Comédia",
+    playbackId: "",
   },
   {
     kind: "show",
     slug: "shin-chan",
     title: "Shin Chan",
     synopsis:
-      "Acompanha Shinnosuke Nohara (Shin chan), um rapaz de cinco anos muito travesso e direto que surpreende a família e os adultos.",
+      "Uma detetive recém-transferida para a esquadra do porto descobre que o caso mais simples da sua carreira esconde uma teia de favores políticos com décadas.",
     year: 2006,
     genre: "Animação",
     poster: "/posters/shin-chan.jpg",
-    backdrop: "/backdrop/shin-chan.jpg",
+    backdrop: "/backdrops/shin-chan.jpg",
     seasons: [
       {
         seasonNumber: 1,
         episodes: [
           {
             episodeNumber: 1,
-            title: "Shin Chan Vai às Compras",
-            synopsis: "Neste episódio Shin Chan vai às compras.",
+            title: "Shin Chan vai às compras / Olha-me este desenho",
+            synopsis: "A detetive Marta Soares chega ao porto e recebe o primeiro caso.",
             duration: "22m",
             playbackId: "SdLLgTif9iZHyge6iOao2w00lh01PsL01sd2HCNKF6dMLM",
           },
