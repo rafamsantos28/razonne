@@ -134,15 +134,15 @@ export const catalog: Title[] = [
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
   },
   {
-    slug: "obsession-a-felicidade-e-relativa",
-    title: "Obsession: A Felicidade é Relativa",
+    slug: "michael",
+    title: "Michael",
     synopsis:
-      "Bear trabalha numa loja de música ao lado de Nikki (Inde Navarrette), por quem há muito está apaixonado.",
+      "  Com Jaafar Jackson, sobrinho de Michael Jackson​, a dar vida ao protagonista, o filme acompanha o percurso artístico e pessoal do artista, atravessando o contexto familiar que o fez entrar na indústria musical com apenas cinco anos de idade, a ascensão meteórica ao lado dos The Jackson 5 e o seu esforço de continuar numa carreira a solo, sempre marcada por um excesso de exposição mediática.",
     year: 2026,
     duration: "1h 48m",
-    genre: "Terror",
-    playbackId: "UUBPBhLuBdj0202zYTn006gadfQHXQnfCeIhwgYv5Edaes",
-  }
+    genre: "Biografia",
+    playbackId: "",
+  },
 ];
 
 export function getTitleBySlug(slug: string): Title | undefined {
