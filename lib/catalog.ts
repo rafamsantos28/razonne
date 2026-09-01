@@ -177,6 +177,19 @@ export const catalog: CatalogItem[] = [
     playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
   },
   {
+    kind: "movie",
+    slug: "scary-movie-whats-up",
+    title: "Scary Movie: What's Up",
+    synopsis:
+      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violência.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Comédia",
+    poster: "/posters/scary-movie-whats-up.jpg",
+    backdrop: "/backdrops/scary-movie-whats-up.jpg",
+    playbackId: "WJJTca8WbxJR42eu1DTN023zGeoTiMKF01TZ4GHIgVPZo",
+  },
+  {
     kind: "show",
     slug: "shin-chan",
     title: "Shin Chan",
