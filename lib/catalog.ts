@@ -151,6 +151,32 @@ export const catalog: CatalogItem[] = [
     playbackId: "5I2noHm32e7qR53CRq2ICQ9y01N1Q01i767GqWPL7GTUM",
   },
   {
+    kind: "movie",
+    slug: "minimos-e-monstros",
+    title: "Mínimos e Monstros",
+    synopsis:
+      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido.",
+    year: 2026,
+    duration: "1h 32m",
+    genre: "Animação",
+    poster: "/posters/minomos-e-monstros.jpg",
+    backdrop: "/backdrops/minimos-e-monstros.jpg",
+    playbackId: "No7024O54AavSSzfnJQf1MVfa01Kju9BojUiJdNe7kKF4",
+  },
+  {
+    kind: "movie",
+    slug: "toy-story-5",
+    title: "Toy Story 5",
+    synopsis:
+      "Passados mais de 30 anos sobre a estreia de "Toy Story - Os Rivais", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
+    year: 2026,
+    duration: "1h 40m",
+    genre: "Animação",
+    poster: "/posters/toy-story-5.jpg",
+    backdrop: "/backdrops/toy-story-5.jpg",
+    playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
+  },
+  {
     kind: "show",
     slug: "shin-chan",
     title: "Shin Chan",
