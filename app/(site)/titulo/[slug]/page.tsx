@@ -44,7 +44,30 @@ export default function TitleDetailsPage({
   const chips = getMetaChips(item);
 
   return (
-    <article>
+    <article className="min-h-screen">
+      {/* Botão de voltar com seta */}
+      <div className="absolute left-6 top-6 z-10 md:left-10 md:top-10">
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-rim text-frost transition-colors hover:border-mist hover:text-mist"
+          aria-label="Voltar ao catálogo"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </Link>
+      </div>
+
       <div className="relative h-[46vh] min-h-[320px] w-full overflow-hidden border-b border-rim/60">
         {item.backdrop ? (
           <Image src={item.backdrop} alt="" fill className="object-cover" />
@@ -109,12 +132,6 @@ export default function TitleDetailsPage({
                 Vídeo por adicionar
               </span>
             )}
-            <Link
-              href="/"
-              className="rounded-md border border-rim px-6 py-3 text-sm font-medium text-frost transition-colors hover:border-mist"
-            >
-              Voltar ao catálogo
-            </Link>
           </div>
         )}
 
@@ -160,15 +177,6 @@ export default function TitleDetailsPage({
                   </ul>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-10">
-              <Link
-                href="/"
-                className="rounded-md border border-rim px-6 py-3 text-sm font-medium text-frost transition-colors hover:border-mist"
-              >
-                Voltar ao catálogo
-              </Link>
             </div>
           </>
         )}
