@@ -9,12 +9,13 @@ export function generateStaticParams() {
   return catalog.map((title) => ({ slug: title.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const title = getTitleBySlug(params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const title = getTitleBySlug(slug);
   if (!title) return { title: "Título não encontrado" };
 
   return {
@@ -28,12 +29,13 @@ export function generateMetadata({
   };
 }
 
-export default function TitleDetailsPage({
+export default async function TitleDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const title = getTitleBySlug(params.slug);
+  const { slug } = await params;
+  const title = getTitleBySlug(slug);
   if (!title) notFound();
 
   return (
