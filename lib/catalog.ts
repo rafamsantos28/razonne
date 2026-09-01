@@ -102,6 +102,8 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 38m",
     genre: "Animação",
+    poster: "/posters/super-mario-galaxy-o-filme",
+    backdrop: "/backdrops/super-mario-galaxy-o-filme",
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
     assetId: "Ck00GRxgj119R15wglt324U6eO9ZWy4ce9dOrxF00mcM4", // cola aqui o Asset ID (ver README) quando fores anexar legendas/áudio
     // Exemplo de preenchimento depois de correres o script para este título:
