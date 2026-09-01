@@ -21,15 +21,15 @@ const siteUrl = "https://razonneplus.pt";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Razonne+ | Cinema em streaming",
+    default: "Razonne+",
     template: "%s | Razonne+",
   },
   description:
-    "Razonne+ é a plataforma de streaming onde encontras o teu próximo título para ver esta noite.",
+    "Razonne+ é a plataforma de streaming onde encontras o teu próximo título para ver esta noite sem pagares por isso nem saíres do teu sofá.",
   openGraph: {
     title: "Razonne+",
     description:
-      "Razonne+ é a plataforma de streaming onde encontras o teu próximo título para ver esta noite.",
+      "Razonne+ é a plataforma de streaming onde encontras o teu próximo título para ver esta noite sem pagares por isso nem saíres do teu sofá.",
     url: siteUrl,
     siteName: "Razonne+",
     locale: "pt_PT",
