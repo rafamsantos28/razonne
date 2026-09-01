@@ -6,14 +6,29 @@ export type TrackInfo = {
   name: string;
 };
 
-export type Title = {
+type BaseItem = {
   /** Identificador usado no URL, ex: /titulo/nevoa-alta */
   slug: string;
   title: string;
   synopsis: string;
   year: number;
-  duration: string; // ex: "1h 42m"
   genre: string;
+  /**
+   * Caminhos opcionais para imagens reais. Coloca os ficheiros em
+   * public/posters/ (retrato) e public/backdrops/ (paisagem) e aponta
+   * para eles como "/posters/ficheiro.jpg" e "/backdrops/ficheiro.jpg" —
+   * ou usa uma URL https completa se hospedares noutro sítio. Se ficarem
+   * por preencher, o site desenha automaticamente uma capa gerada com as
+   * cores da marca.
+   */
+  poster?: string;
+  backdrop?: string;
+  featured?: boolean;
+};
+
+export type Movie = BaseItem & {
+  kind: "movie";
+  duration: string; // ex: "1h 42m"
   /** Playback ID do asset no Mux. Deixa "" se ainda não tiveres o vídeo. */
   playbackId: string;
   /**
@@ -32,33 +47,54 @@ export type Title = {
    */
   subtitles?: TrackInfo[];
   audioTracks?: TrackInfo[];
-  /**
-   * Caminhos opcionais para imagens reais. Coloca os ficheiros em
-   * public/posters/ (retrato) e public/backdrops/ (paisagem) e aponta
-   * para eles como "/posters/ficheiro.jpg" e "/backdrops/ficheiro.jpg" —
-   * ou usa uma URL https completa se hospedares noutro sítio. Se ficarem
-   * por preencher, o site desenha automaticamente uma capa gerada com as
-   * cores da marca.
-   */
-  poster?: string;
-  backdrop?: string;
-  featured?: boolean;
 };
+
+export type Episode = {
+  /** Identificador usado no URL do episódio, ex: 1 */
+  episodeNumber: number;
+  title: string;
+  synopsis?: string;
+  duration?: string;
+  /** Playback ID do asset no Mux para este episódio. Deixa "" se ainda não tiveres o vídeo. */
+  playbackId: string;
+};
+
+export type Season = {
+  seasonNumber: number;
+  /** Título opcional a mostrar em vez de "Temporada N". */
+  title?: string;
+  episodes: Episode[];
+};
+
+export type Show = BaseItem & {
+  kind: "show";
+  seasons: Season[];
+};
+
+export type CatalogItem = Movie | Show;
 
 // ---------------------------------------------------------------------------
 // CATÁLOGO — substitui estas entradas pelos teus títulos reais.
 //
-// Para cada título:
+// Filmes (kind: "movie"):
 //  1. Faz upload do vídeo ao Mux e copia o "Playback ID" do asset.
 //  2. Cola-o em `playbackId`.
-//  3. (Opcional) adiciona `poster` (retrato, ideal 780x1170) e `backdrop`
-//     (paisagem, ideal 1920x1080). Podes colocar as imagens em /public.
+//
+// Séries (kind: "show"):
+//  1. Organiza os episódios em `seasons` -> `episodes`.
+//  2. Cada episódio tem o seu próprio `playbackId` (é um asset separado no
+//     Mux, tal como um filme).
+//
+// Em ambos: (Opcional) adiciona `poster` (retrato, ideal 780x1170) e
+// `backdrop` (paisagem, ideal 1920x1080). Podes colocar as imagens em
+// public/posters/ e public/backdrops/.
 //
 // O primeiro título com `featured: true` é usado no ecrã principal.
 // ---------------------------------------------------------------------------
 
 export const catalog: Title[] = [
   {
+    kind: "movie",
     slug: "leviticus",
     title: "Leviticus",
     synopsis:
@@ -76,6 +112,7 @@ export const catalog: Title[] = [
     featured: true,
   },
   {
+    kind: "movie",
     slug: "minimos-e-monstros",
     title: "Mínimos e Monstros",
     synopsis:
@@ -86,6 +123,7 @@ export const catalog: Title[] = [
     playbackId: "No7024O54AavSSzfnJQf1MVfa01Kju9BojUiJdNe7kKF4",
   },
   {
+    kind: "movie",
     slug: "toy-story-5",
     title: "Toy Story 5",
     synopsis:
@@ -96,6 +134,7 @@ export const catalog: Title[] = [
     playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
   },
   {
+    kind: "movie",
     slug: "scary-movie-whats-up",
     title: "Scary Movie: What's Up",
     synopsis:
@@ -106,6 +145,7 @@ export const catalog: Title[] = [
     playbackId: "WJJTca8WbxJR42eu1DTN023zGeoTiMKF01TZ4GHIgVPZo",
   },
   {
+    kind: "movie",
     slug: "evil-dead-burn",
     title: "Evil Dead Burn",
     synopsis:
@@ -116,6 +156,7 @@ export const catalog: Title[] = [
     playbackId: "49hkoOpsGMKUim1a6DXdfNjIii1cD02OfaCVpGXPwN8M",
   },
   {
+    kind: "movie",
     slug: "jackass-ultimo-shot-de-loucura",
     title: "Jackass: Último Shot de Loucura",
     synopsis:
@@ -126,6 +167,7 @@ export const catalog: Title[] = [
     playbackId: "j2HP9dGKJQzZgwUCT009eOIORvvyWdOhMQn7Z3UAJlQg",
   },
   {
+    kind: "movie",
     slug: "super-mario-galaxy-o-filme",
     title: "Super Mario Galaxy: O Filme",
     synopsis:
@@ -136,6 +178,7 @@ export const catalog: Title[] = [
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
   },
   {
+    kind: "movie",
     slug: "michael",
     title: "Michael",
     synopsis:
@@ -147,12 +190,125 @@ export const catalog: Title[] = [
     poster: "/posters/michael.jpg",
     backdrop: "/backdrops/michael.jpg",
   },
+  {
+    kind: "show",
+    slug: "shin-chan",
+    title: "Shin Chan",
+    synopsis:
+      "Acompanha Shinnosuke Nohara (Shin chan), um rapaz de cinco anos muito travesso e direto que surpreende a família e os adultos.",
+    year: 2006,
+    genre: "Animação",
+    poster: "/posters/shin-chan.jpg",
+    backdrop: "/backdrop/shin-chan.jpg",
+    seasons: [
+      {
+        seasonNumber: 1,
+        episodes: [
+          {
+            episodeNumber: 1,
+            title: "Shin Chan Vai às Compras",
+            synopsis: "Neste episódio Shin Chan vai às compras.",
+            duration: "22m",
+            playbackId: "SdLLgTif9iZHyge6iOao2w00lh01PsL01sd2HCNKF6dMLM",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
-export function getTitleBySlug(slug: string): Title | undefined {
-  return catalog.find((t) => t.slug === slug);
+export function getItemBySlug(slug: string): CatalogItem | undefined {
+  return catalog.find((item) => item.slug === slug);
 }
 
-export function getFeaturedTitle(): Title {
-  return catalog.find((t) => t.featured) ?? catalog[0];
+export function getFeaturedItem(): CatalogItem {
+  return catalog.find((item) => item.featured) ?? catalog[0];
+}
+
+export function isMovie(item: CatalogItem): item is Movie {
+  return item.kind === "movie";
+}
+
+export function isShow(item: CatalogItem): item is Show {
+  return item.kind === "show";
+}
+
+/** Se o título já tem pelo menos um vídeo pronto a reproduzir. */
+export function hasPlayableVideo(item: CatalogItem): boolean {
+  if (item.kind === "movie") return Boolean(item.playbackId);
+  return item.seasons.some((season) =>
+    season.episodes.some((ep) => Boolean(ep.playbackId))
+  );
+}
+
+/** Etiquetas curtas (ano, género, duração/episódios) para mostrar em chips. */
+export function getMetaChips(item: CatalogItem): string[] {
+  const chips = [String(item.year), item.genre];
+  if (item.kind === "movie") {
+    chips.push(item.duration);
+    return chips;
+  }
+  const seasons = item.seasons.length;
+  const episodes = item.seasons.reduce((n, s) => n + s.episodes.length, 0);
+  chips.push(`${seasons} ${seasons === 1 ? "temporada" : "temporadas"}`);
+  chips.push(`${episodes} ${episodes === 1 ? "episódio" : "episódios"}`);
+  return chips;
+}
+
+/** Segmento usado no URL do player para um episódio, ex: "1-3". */
+export function episodeRouteSegment(seasonNumber: number, episodeNumber: number) {
+  return `${seasonNumber}-${episodeNumber}`;
+}
+
+export function parseEpisodeSegment(
+  segment: string
+): { season: number; episode: number } | null {
+  const match = /^(\d+)-(\d+)$/.exec(segment);
+  if (!match) return null;
+  return { season: Number(match[1]), episode: Number(match[2]) };
+}
+
+export function findEpisode(
+  show: Show,
+  seasonNumber: number,
+  episodeNumber: number
+): Episode | undefined {
+  const season = show.seasons.find((s) => s.seasonNumber === seasonNumber);
+  return season?.episodes.find((e) => e.episodeNumber === episodeNumber);
+}
+
+export function getNextEpisode(
+  show: Show,
+  seasonNumber: number,
+  episodeNumber: number
+): { seasonNumber: number; episode: Episode } | null {
+  const seasonIdx = show.seasons.findIndex((s) => s.seasonNumber === seasonNumber);
+  if (seasonIdx === -1) return null;
+
+  const season = show.seasons[seasonIdx];
+  const epIdx = season.episodes.findIndex((e) => e.episodeNumber === episodeNumber);
+  if (epIdx !== -1 && epIdx + 1 < season.episodes.length) {
+    return { seasonNumber, episode: season.episodes[epIdx + 1] };
+  }
+
+  const nextSeason = show.seasons[seasonIdx + 1];
+  if (nextSeason && nextSeason.episodes.length > 0) {
+    return { seasonNumber: nextSeason.seasonNumber, episode: nextSeason.episodes[0] };
+  }
+  return null;
+}
+
+/** URL de reprodução principal para um item (primeiro episódio disponível, no caso de séries). */
+export function getPrimaryWatchHref(item: CatalogItem): string | null {
+  if (item.kind === "movie") {
+    return item.playbackId ? `/titulo/${item.slug}/reproduzir` : null;
+  }
+  for (const season of item.seasons) {
+    for (const ep of season.episodes) {
+      if (ep.playbackId) {
+        return `/titulo/${item.slug}/reproduzir/${episodeRouteSegment(season.seasonNumber, ep.episodeNumber)}`;
+      }
+    }
+  }
+  return null;
 }
