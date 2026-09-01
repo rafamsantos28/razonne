@@ -168,7 +168,7 @@ export const catalog: CatalogItem[] = [
     slug: "toy-story-5",
     title: "Toy Story 5",
     synopsis:
-      "Passados mais de 30 anos sobre a estreia de "Toy Story - Os Rivais", a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
+      "Passados mais de 30 anos sobre a estreia de Toy Story Os Rivais, a história que se tornou um marco na vida de milhões de espectadores por todo o mundo continua neste quinto capítulo.",
     year: 2026,
     duration: "1h 40m",
     genre: "Animação",
