@@ -33,7 +33,7 @@ export default function Hero({ title }: { title: Title }) {
             href={`/titulo/${title.slug}/reproduzir`}
             className="rounded-md bg-razonne-gradient px-6 py-3 text-sm font-medium text-void transition-opacity hover:opacity-90"
           >
-            Assistir agora
+            Reproduzir
           </Link>
           <Link
             href={`/titulo/${title.slug}`}
