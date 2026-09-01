@@ -143,7 +143,9 @@ export const catalog: Title[] = [
     year: 2026,
     duration: "1h 48m",
     genre: "Biografia",
-    playbackId: "",
+    playbackId: "wW01Hwwx95ZhzCVjf8ofWQ3OWcdIDWOQcjFD5uw3jAyg",
+    poster: "/posters/michael.jpg",
+    backdrop: "/backdrops/michael.jpg",
   },
 ];
 
