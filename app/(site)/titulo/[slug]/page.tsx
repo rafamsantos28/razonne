@@ -87,7 +87,7 @@ export default function TitleDetailsPage({
               href={`/titulo/${title.slug}/reproduzir`}
               className="rounded-md bg-razonne-gradient px-6 py-3 text-sm font-medium text-void transition-opacity hover:opacity-90"
             >
-              Assistir agora
+              Reproduzir
             </Link>
           ) : (
             <span className="rounded-md border border-rim px-6 py-3 text-sm font-medium text-mist">
