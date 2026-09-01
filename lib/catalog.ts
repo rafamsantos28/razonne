@@ -118,6 +118,8 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 28m",
     genre: "Terror",
+    poster: "/posters/leviticus.jpg",
+    backdrop: "/backdrops/leviticus.jpg",
     playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
   },
   {
@@ -129,7 +131,9 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 34m",
     genre: "Biografia",
-    playbackId: "",
+    poster: "/posters/michael.jpg",
+    backdrop: "backdrop/michael.jpg",
+    playbackId: "wW01Hwwx95ZhzCVjf8ofWQ3OWcdIDWOQcjFD5uw3jAyg",
   },
   {
     kind: "movie",
@@ -140,7 +144,9 @@ export const catalog: CatalogItem[] = [
     year: 2025,
     duration: "2h 05m",
     genre: "Comédia",
-    playbackId: "",
+    poster: "/posters/ladroes-da-treta.jpg",
+    backdrop: "/backdrop/ladroes-da-treta.jpg",
+    playbackId: "5I2noHm32e7qR53CRq2ICQ9y01N1Q01i767GqWPL7GTUM",
   },
   {
     kind: "show",
