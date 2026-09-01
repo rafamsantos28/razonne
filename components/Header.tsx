@@ -14,6 +14,12 @@ export default function Header() {
             priority
             className="h-8 w-auto md:h-9"
           />
+        </Link>
+        <nav className="flex items-center gap-6 text-sm text-mist">
+          <Link href="/" className="transition-colors hover:text-frost">
+            Catálogo
+          </Link>
+        </nav>
       </div>
     </header>
   );
