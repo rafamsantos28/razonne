@@ -132,7 +132,7 @@ export const catalog: CatalogItem[] = [
     duration: "1h 34m",
     genre: "Biografia",
     poster: "/posters/michael.jpg",
-    backdrop: "backdrop/michael.jpg",
+    backdrop: "backdrops/michael.jpg",
     playbackId: "wW01Hwwx95ZhzCVjf8ofWQ3OWcdIDWOQcjFD5uw3jAyg",
   },
   {
@@ -145,7 +145,7 @@ export const catalog: CatalogItem[] = [
     duration: "2h 05m",
     genre: "Comédia",
     poster: "/posters/ladroes-da-treta.jpg",
-    backdrop: "/backdrop/ladroes-da-treta.jpg",
+    backdrop: "/backdrops/ladroes-da-treta.jpg",
     playbackId: "5I2noHm32e7qR53CRq2ICQ9y01N1Q01i767GqWPL7GTUM",
   },
   {
