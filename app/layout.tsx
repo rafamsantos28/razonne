@@ -21,7 +21,7 @@ const siteUrl = "https://razonneplus.pt";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Razonne+ | Cinema em streaming",
+    default: "Razonne+",
     template: "%s | Razonne+",
   },
   description:
