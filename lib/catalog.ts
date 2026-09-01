@@ -74,7 +74,7 @@ export const catalog: Title[] = [
     slug: "minimos-e-monstros",
     title: "Mínimos e Monstros",
     synopsis:
-      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido. Algo hiperactivos, são dotados de um humor só comparável à sua enor[...]",
+      "Os Mínimos são uma comunidade de incontáveis (e tresloucados) seres pequeninos, amarelos e em forma de comprimido.",
     year: 2026,
     duration: "1h 32m",
     genre: "Animação",
@@ -94,7 +94,7 @@ export const catalog: Title[] = [
     slug: "scary-movie-whats-up",
     title: "Scary Movie: What's Up",
     synopsis:
-      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violênci[...]",
+      "Vinte e seis anos depois de terem sobrevivido a uma série de ataques cometidos por um implacável assassino mascarado, Cindy, Brenda, Shorty e Ray deparam-se com uma nova vaga de violência.",
     year: 2026,
     duration: "1h 35m",
     genre: "Comédia",
@@ -114,12 +114,22 @@ export const catalog: Title[] = [
     slug: "jackass-ultimo-shot-de-loucura",
     title: "Jackass: Último Shot de Loucura",
     synopsis:
-      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma – que afirma[...]",
+      "Depois do enorme sucesso da série lançada no ano 2000 no canal MTV, Johnny Knoxville, Steve-O, Chris Pontius, Wee Man e o restante grupo de Jackass regressam para mais uma.",
     year: 2026,
     duration: "1h 35m",
     genre: "Comédia",
     playbackId: "j2HP9dGKJQzZgwUCT009eOIORvvyWdOhMQn7Z3UAJlQg",
   },
+  {
+    slug: "super-mario-galaxy-o-filme",
+    title: "Super Mario Galaxy: O Filme",
+    synopsis:
+      "Depois de salvarem o Reino dos Cogumelos, onde agora residem, Mario e Luigi — os simpáticos canalizadores de Brooklyn de ascendência italiana — vêem-se a braços com uma luta intergaláctica.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Animação",
+    playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
+  }
 ];
 
 export function getTitleBySlug(slug: string): Title | undefined {
