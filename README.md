@@ -6,20 +6,24 @@ site pronto para deploy na Vercel com o domínio `razonneplus.pt`.
 
 ## Estrutura
 
-- `/` — página inicial, com destaque (hero) e grelha de catálogo.
-- `/titulo/[slug]` — página de detalhes de um título (sinopse, ano, género,
-  duração). O título do filme aparece na aba do browser.
-- `/titulo/[slug]/reproduzir` — página do leitor, com o Mux Player a ecrã
-  inteiro.
+- `/` — página inicial, com destaque (hero) e grelha de catálogo (filmes e séries).
+- `/titulo/[slug]` — página de detalhes. Para um filme, mostra sinopse e o
+  botão de reprodução; para uma série, mostra a lista de temporadas e
+  episódios. O título aparece na aba do browser.
+- `/titulo/[slug]/reproduzir` — leitor de um filme, a ecrã inteiro.
+- `/titulo/[slug]/reproduzir/[temporada-episodio]` — leitor de um episódio
+  de série (ex: `/titulo/sombras-da-cidade/reproduzir/1-2` é a Temporada 1,
+  Episódio 2), com botão para o episódio seguinte.
 
 Todo o catálogo vive num único ficheiro: **`lib/catalog.ts`**.
 
 ## Como adicionar os teus filmes
 
-Abre `lib/catalog.ts` e edita (ou acrescenta) entradas:
+Abre `lib/catalog.ts` e acrescenta uma entrada com `kind: "movie"`:
 
 ```ts
 {
+  kind: "movie",
   slug: "o-teu-filme",              // usado no URL: /titulo/o-teu-filme
   title: "O Teu Filme",
   synopsis: "Sinopse curta do filme.",
@@ -33,6 +37,45 @@ Abre `lib/catalog.ts` e edita (ou acrescenta) entradas:
 }
 ```
 
+## Como adicionar as tuas séries
+
+Acrescenta uma entrada com `kind: "show"` e organiza os episódios dentro de
+`seasons`. Cada episódio é um asset próprio no Mux, com o seu próprio
+`playbackId` — tal como um filme:
+
+```ts
+{
+  kind: "show",
+  slug: "a-tua-serie",
+  title: "A Tua Série",
+  synopsis: "Sinopse curta da série.",
+  year: 2024,
+  genre: "Drama",
+  poster: "/posters/a-tua-serie.jpg",     // opcional
+  backdrop: "/backdrops/a-tua-serie.jpg", // opcional
+  seasons: [
+    {
+      seasonNumber: 1,
+      episodes: [
+        {
+          episodeNumber: 1,
+          title: "Piloto",
+          synopsis: "Sinopse curta do episódio.",   // opcional
+          duration: "45m",                          // opcional
+          playbackId: "COLA_AQUI_O_PLAYBACK_ID_DO_MUX",
+        },
+        // mais episódios...
+      ],
+    },
+    // mais temporadas...
+  ],
+}
+```
+
+Um episódio sem `playbackId` aparece marcado "Em breve" na lista de
+episódios da página de detalhes, tal como acontece com os filmes — podes ir
+publicando episódios aos poucos sem partir nada.
+
 Para obteres o `playbackId`: no [dashboard do Mux](https://dashboard.mux.com),
 abre o asset já carregado → separador **Playback IDs** → copia o ID (é
 suposto ser `public` para funcionar sem assinatura de tokens).
@@ -43,6 +86,7 @@ não tens as imagens finais. Basta colocares os ficheiros em `public/posters/`
 e apontar o caminho (ex: `/posters/ficheiro.jpg`).
 
 ### Onde colocar os posters (retrato) e banners (paisagem)
+
 
 | Imagem | Onde usar no site | Pasta | Proporção ideal | Tamanho recomendado |
 |---|---|---|---|---|
