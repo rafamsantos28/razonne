@@ -21,6 +21,7 @@ type BaseItem = {
    * por preencher, o site desenha automaticamente uma capa gerada com as
    * cores da marca.
    */
+  age: string;
   poster?: string;
   backdrop?: string;
   featured?: boolean;
@@ -102,6 +103,7 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 38m",
     genre: "Animação",
+    age: "6+",
     poster: "/posters/super-mario-galaxy-o-filme.jpg",
     backdrop: "/backdrops/super-mario-galaxy-o-filme.jpg",
     playbackId: "00dZfYVbjtOSBMO4RqTVfjUZk53lrbZhKb2r3ZXnLITk",
@@ -120,6 +122,7 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 28m",
     genre: "Terror",
+    age: "16+",
     poster: "/posters/leviticus.jpg",
     backdrop: "/backdrops/leviticus.jpg",
     playbackId: "ZmsJPxap2jtAreJueY00ClpLAOQfqummDoFaR02001blsA",
@@ -133,6 +136,7 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "2h 08m",
     genre: "Biografia",
+    age: "12+",
     poster: "/posters/michael.jpg",
     backdrop: "backdrops/michael.jpg",
     playbackId: "wW01Hwwx95ZhzCVjf8ofWQ3OWcdIDWOQcjFD5uw3jAyg",
@@ -146,6 +150,7 @@ export const catalog: CatalogItem[] = [
     year: 2025,
     duration: "1h 30m",
     genre: "Comédia",
+    age: "12+",
     poster: "/posters/ladroes-da-treta.jpg",
     backdrop: "/backdrops/ladroes-da-treta.jpg",
     playbackId: "5I2noHm32e7qR53CRq2ICQ9y01N1Q01i767GqWPL7GTUM",
@@ -159,6 +164,7 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 32m",
     genre: "Animação",
+    age: "6+",
     poster: "/posters/minomos-e-monstros.jpg",
     backdrop: "/backdrops/minimos-e-monstros.jpg",
     playbackId: "No7024O54AavSSzfnJQf1MVfa01Kju9BojUiJdNe7kKF4",
@@ -172,6 +178,7 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 40m",
     genre: "Animação",
+    age: "6+",
     poster: "/posters/toy-story-5.jpg",
     backdrop: "/backdrops/toy-story-5.jpg",
     playbackId: "1xZeRIacR6jdUHxMKcYTQz7AjqAQId14Bl01coVV6yxs",
@@ -185,9 +192,24 @@ export const catalog: CatalogItem[] = [
     year: 2026,
     duration: "1h 35m",
     genre: "Comédia",
+    age: "14+",
     poster: "/posters/scary-movie-whats-up.jpg",
     backdrop: "/backdrops/scary-movie-whats-up.jpg",
     playbackId: "WJJTca8WbxJR42eu1DTN023zGeoTiMKF01TZ4GHIgVPZo",
+  },
+  {
+    kind: "movie",
+    slug: "evil-dead-burn",
+    title: "Evil Dead Burn",
+    synopsis:
+      "Após a morte do marido, Alice aceita o convite para passar alguns dias em casa dos sogros.",
+    year: 2026,
+    duration: "1h 35m",
+    genre: "Terror",
+    age: "18+",
+    poster: "/posters/evil-dead-burn.jpg",
+    backdrop: "/backdrops/evil-dead-burn.jpg",
+    playbackId: "49hkoOpsGMKUim1a6DXdfNjIii1cD02OfaCVpGXPwN8M",
   },
   {
     kind: "show",
@@ -197,6 +219,7 @@ export const catalog: CatalogItem[] = [
       "Uma detetive recém-transferida para a esquadra do porto descobre que o caso mais simples da sua carreira esconde uma teia de favores políticos com décadas.",
     year: 2006,
     genre: "Animação",
+    age: "6+",
     poster: "/posters/shin-chan.jpg",
     backdrop: "/backdrops/shin-chan.jpg",
     seasons: [
@@ -206,9 +229,23 @@ export const catalog: CatalogItem[] = [
           {
             episodeNumber: 1,
             title: "Shin Chan vai às compras / Olha-me este desenho",
-            synopsis: "A detetive Marta Soares chega ao porto e recebe o primeiro caso.",
+            synopsis: "Shin Chan vai às compras / Olha-me este desenho",
             duration: "22m",
             playbackId: "SdLLgTif9iZHyge6iOao2w00lh01PsL01sd2HCNKF6dMLM",
+          },
+          {
+            episodeNumber: 2,
+            title: "Quero um triciclo / Dói-me tanto a barriga / Pobre Papá",
+            synopsis: "Quero um triciclo / Dói-me tanto a barriga / Pobre Papá",
+            duration: "22m",
+            playbackId: "nSw8W5Whbm501XAcCQEh02NvFUVhlcssmObGdoFVQPrJ4",
+          },
+          {
+            episodeNumber: 3,
+            title: "Episódio 3",
+            synopsis: "Episódio 3",
+            duration: "22m",
+            playbackId: "00wD6yjc45hQSxg01Q00BZCNUCB25pEhmBwJRcEDzmE01h4",
           },
         ],
       },
