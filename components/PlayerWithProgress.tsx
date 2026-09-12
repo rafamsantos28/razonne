@@ -64,7 +64,7 @@ export default function PlayerWithProgress({
       autoPlay
       className="h-full w-full"
       startTime={startTime}
-      onTimeUpdate={(e) => handleTimeUpdate(e.currentTime)}
+      onTimeUpdate={(e) => handleTimeUpdate(e.detail?.currentTime ?? e.currentTarget.currentTime)}
     />
   );
 }
